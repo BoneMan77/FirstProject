@@ -1,0 +1,46 @@
+c:\users\韩力\documents\visual studio 2015\Projects\DeskTestDome\DeskTestDome\bin\Debug\DeskTestDome.exe.config
+c:\users\韩力\documents\visual studio 2015\Projects\DeskTestDome\DeskTestDome\bin\Debug\DeskTestDome.exe
+c:\users\韩力\documents\visual studio 2015\Projects\DeskTestDome\DeskTestDome\bin\Debug\DeskTestDome.pdb
+c:\users\韩力\documents\visual studio 2015\Projects\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.Form1.resources
+c:\users\韩力\documents\visual studio 2015\Projects\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.Properties.Resources.resources
+c:\users\韩力\documents\visual studio 2015\Projects\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.csproj.GenerateResource.Cache
+c:\users\韩力\documents\visual studio 2015\Projects\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.exe
+c:\users\韩力\documents\visual studio 2015\Projects\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.pdb
+C:\Users\韩力\documents\visual studio 2015\Projects\DeskTestDome\DeskTestDome\bin\Debug\ABB.Robotics.Controllers.PC.dll
+C:\Users\韩力\documents\visual studio 2015\Projects\DeskTestDome\DeskTestDome\bin\Debug\RobotStudio.Services.RobApi.dll
+C:\Users\韩力\documents\visual studio 2015\Projects\DeskTestDome\DeskTestDome\bin\Debug\RobotStudio.Services.RobApi.Desktop.dll
+C:\Users\韩力\documents\visual studio 2015\Projects\DeskTestDome\DeskTestDome\bin\Debug\ABB.Robotics.Controllers.PC.xml
+C:\Users\韩力\documents\visual studio 2015\Projects\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.CylinderSet.resources
+C:\Users\韩力\documents\visual studio 2015\Projects\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.JudgeForm.resources
+C:\Users\韩力\documents\visual studio 2015\Projects\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.csprojResolveAssemblyReference.cache
+C:\Users\67092\Documents\Visual Studio 2015\Projects\DeskTestDome\DeskTestDome\bin\Debug\DeskTestDome.exe.config
+C:\Users\67092\Documents\Visual Studio 2015\Projects\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.exe
+C:\Users\67092\Documents\Visual Studio 2015\Projects\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.pdb
+C:\Users\67092\Documents\Visual Studio 2015\Projects\DeskTestDome\DeskTestDome\bin\Debug\DeskTestDome.exe
+C:\Users\67092\Documents\Visual Studio 2015\Projects\DeskTestDome\DeskTestDome\bin\Debug\DeskTestDome.pdb
+C:\Users\67092\Documents\Visual Studio 2015\Projects\DeskTestDome\DeskTestDome\bin\Debug\ABB.Robotics.Controllers.PC.dll
+C:\Users\67092\Documents\Visual Studio 2015\Projects\DeskTestDome\DeskTestDome\bin\Debug\RobotStudio.Services.RobApi.dll
+C:\Users\67092\Documents\Visual Studio 2015\Projects\DeskTestDome\DeskTestDome\bin\Debug\RobotStudio.Services.RobApi.Desktop.dll
+C:\Users\67092\Documents\Visual Studio 2015\Projects\DeskTestDome\DeskTestDome\bin\Debug\ABB.Robotics.Controllers.PC.xml
+C:\Users\67092\Documents\Visual Studio 2015\Projects\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.csprojResolveAssemblyReference.cache
+C:\Users\67092\Documents\Visual Studio 2015\Projects\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.CylinderSet.resources
+C:\Users\67092\Documents\Visual Studio 2015\Projects\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.Form1.resources
+C:\Users\67092\Documents\Visual Studio 2015\Projects\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.JudgeForm.resources
+C:\Users\67092\Documents\Visual Studio 2015\Projects\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.Properties.Resources.resources
+C:\Users\67092\Documents\Visual Studio 2015\Projects\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.csproj.GenerateResource.Cache
+D:\project\DeskTestDome\DeskTestDome\bin\Debug\DeskTestDome.exe.config
+D:\project\DeskTestDome\DeskTestDome\bin\Debug\DeskTestDome.exe
+D:\project\DeskTestDome\DeskTestDome\bin\Debug\DeskTestDome.pdb
+D:\project\DeskTestDome\DeskTestDome\bin\Debug\RobotStudio.Services.RobApi.dll
+D:\project\DeskTestDome\DeskTestDome\bin\Debug\RobotStudio.Services.RobApi.Desktop.dll
+D:\project\DeskTestDome\DeskTestDome\bin\Debug\ABB.Robotics.Controllers.PC.xml
+D:\project\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.csprojAssemblyReference.cache
+D:\project\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.CylinderSet.resources
+D:\project\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.Form1.resources
+D:\project\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.JudgeForm.resources
+D:\project\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.Properties.Resources.resources
+D:\project\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.csproj.GenerateResource.cache
+D:\project\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.csproj.CoreCompileInputs.cache
+D:\project\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.csproj.CopyComplete
+D:\project\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.exe
+D:\project\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.pdb
