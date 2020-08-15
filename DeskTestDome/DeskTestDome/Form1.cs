@@ -68,8 +68,7 @@ namespace DeskTestDome
         public delegate void PindexValueChange(object sender, EventArgs e);
         public event PindexValueChange OnPindexValueChange;
 
-        public delegate void UpdateView();
-        public event UpdateView EventUpdateView;
+        public delegate void DelegateUpdateView();
         public Form1()
         {
             InitializeComponent();
@@ -679,31 +678,29 @@ namespace DeskTestDome
 
         private void btn_Updata_Click(object sender, EventArgs e)
         {
-            Action updataView = UpdataView;
-            Thread myThread;
             Thread MyThread;
-            myThread = new Thread(new ThreadStart(GetData));
-            MyThread = new Thread(new ThreadStart(updataView));
-            myThread.Start();
+            MyThread = new Thread(new ThreadStart(UpdateView));
             lbe_threadShow.Text = "数据加载中";
-            myThread.Join();
             MyThread.Start();
-            MyThread.Join();
-            lbe_threadShow.Text = "数据加载完成";
-            
-
         }
-        private void UpdataView()
+
+        public void UpdateView()
         {
-            dgv_ShowData.Rows.Clear();
-            ArrayData pp = (ArrayData)MyData.rd_MoveSpeed.Value;
-            if (end.Equals("1"))
+            GetData();
+            BeginInvoke(new MethodInvoker(() =>
             {
-                for (int i = 0; i < pp.Length; i++)
+                dgv_ShowData.Rows.Clear();
+                ArrayData pp = (ArrayData)MyData.rd_MoveSpeed.Value;
+                if (end.Equals("1"))
                 {
-                    dgv_ShowData.Rows.Add(i + 1, WaitSignalData[i], MoveTypeData[i], SpeedData[i], ZoneData[i], CylinderData[i], ForceData[i], PermisData[i]);
+                    for (int i = 0; i < pp.Length; i++)
+                    {
+                        dgv_ShowData.Rows.Add(i + 1, WaitSignalData[i], MoveTypeData[i], SpeedData[i], ZoneData[i], CylinderData[i], ForceData[i], PermisData[i]);
+                    }
                 }
-            }
+                lbe_threadShow.Text = "数据加载完成";
+            }));
+
         }
 
 
