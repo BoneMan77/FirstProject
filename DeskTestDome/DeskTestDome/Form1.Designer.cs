@@ -518,6 +518,7 @@
             this.cbx_cy2.TabIndex = 39;
             this.cbx_cy2.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.cbx_cy2.UseVisualStyleBackColor = true;
+            this.cbx_cy2.CheckedChanged += new System.EventHandler(this.cbx_cy2_CheckedChanged);
             this.cbx_cy2.Click += new System.EventHandler(this.cbx_cy2_Click);
             // 
             // btn_cy2
@@ -673,6 +674,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(66, 25);
             this.textBox1.TabIndex = 48;
+            this.textBox1.Text = "2000";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Column1

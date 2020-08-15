@@ -549,53 +549,99 @@ namespace DeskTestDome
             }
             if (JudgeForm.JudgeResult || JudgeForm.CheckResult)
             {
-                try
+                MyRobot.MasterConytol(btn_ClearPower);
+                if (MyData.rd_MoveSpeed.IsArray)
                 {
-                    MyRobot.MasterConytol(btn_ClearPower);
-                    if (MyData.rd_MoveSpeed.IsArray)
+                    Num r_pp = new Num();
+                    r_pp.FillFromString2(tbx_Speed.Text.ToString());
+                    MyData.rd_MoveSpeed.WriteItem(r_pp, Pindex - 1);
+
+                    ABB.Robotics.Controllers.RapidDomain.String r_zone = new ABB.Robotics.Controllers.RapidDomain.String();
+                    r_zone.FillFromString(cbx_Zone.SelectedItem.ToString());
+                    MyData.rd_Zone.WriteItem(r_zone, Pindex - 1);
+
+                    Num r_SF = new Num();
+                    r_SF.FillFromString2(tbx_Force.Text.ToString());
+                    MyData.rd_SetForce.WriteItem(r_SF, Pindex - 1);
+
+                    ABB.Robotics.Controllers.RapidDomain.String r_MT = new ABB.Robotics.Controllers.RapidDomain.String();
+                    r_MT.FillFromString(cbx_MoveType.SelectedItem.ToString());
+                    MyData.rd_MoveType.WriteItem(r_MT, Pindex - 1);
+
+                    if (cbx_PointAllow.Checked)
                     {
-                        Num r_pp = new Num();
-                        r_pp.FillFromString2(tbx_Speed.Text.ToString());
-                        MyData.rd_MoveSpeed.WriteItem(r_pp, Pindex - 1);
-
-                        ABB.Robotics.Controllers.RapidDomain.String r_zone = new ABB.Robotics.Controllers.RapidDomain.String();
-                        r_zone.FillFromString(cbx_Zone.SelectedItem.ToString());
-                        MyData.rd_Zone.WriteItem(r_zone, Pindex - 1);
-
-                        Num r_SF = new Num();
-                        r_SF.FillFromString2(tbx_Force.Text.ToString());
-                        MyData.rd_SetForce.WriteItem(r_SF, Pindex - 1);
-
-                        if (cbx_PointAllow.Checked)
-                        {
-                            Bool r_MP = new Bool();
-                            r_MP.FillFromString2("True");
-                            MyData.rd_MovePermis.WriteItem(r_MP, Pindex - 1);
-                        }
-                        else
-                        {
-                            Bool r_MP = new Bool();
-                            r_MP.FillFromString2("False");
-                            MyData.rd_MovePermis.WriteItem(r_MP, Pindex - 1);
-                        }
+                        Bool r_MP = new Bool();
+                        r_MP.FillFromString2("True");
+                        MyData.rd_MovePermis.WriteItem(r_MP, Pindex - 1);
                     }
-                    for (int i = 0; i < dgv_ShowData.Rows.Count; i++)
+                    else
                     {
-                        if (dgv_ShowData.Rows[i].Cells[0].Value.ToString()==Pindex.ToString())
-                        {
-                            dgv_ShowData.Rows[i].SetValues((Pindex).ToString(),GetWaitSign(true)[0],GetMoveType(true), GetSpeed(true)[0], GetZone(true)[0], GetCylinder(true)[0], GetForce(true)[0], GetPermis(true)[0]);
-                            goto end;
-                        }
+                        Bool r_MP = new Bool();
+                        r_MP.FillFromString2("False");
+                        MyData.rd_MovePermis.WriteItem(r_MP, Pindex - 1);
                     }
-                    dgv_ShowData.Rows.Add((Pindex).ToString(), GetWaitSign(true)[0], GetMoveType(true), GetSpeed(true)[0], GetZone(true)[0], GetCylinder(true)[0], GetForce(true)[0], GetPermis(true)[0]);
+                }
+                for (int i = 0; i < dgv_ShowData.Rows.Count; i++)
+                {
+                    if (dgv_ShowData.Rows[i].Cells[0].Value.ToString() == Pindex.ToString())
+                    {
+                        dgv_ShowData.Rows[i].SetValues((Pindex).ToString(), GetWaitSign(true)[0], GetMoveType(true)[0], GetSpeed(true)[0], GetZone(true)[0], GetCylinder(true)[0], GetForce(true)[0], GetPermis(true)[0]);
+                        goto end;
+                    }
+                }
+                dgv_ShowData.Rows.Add((Pindex).ToString(), GetWaitSign(true)[0], GetMoveType(true), GetSpeed(true)[0], GetZone(true)[0], GetCylinder(true)[0], GetForce(true)[0], GetPermis(true)[0]);
+
+                //try
+                //{
+                //    MyRobot.MasterConytol(btn_ClearPower);
+                //    if (MyData.rd_MoveSpeed.IsArray)
+                //    {
+                //        Num r_pp = new Num();
+                //        r_pp.FillFromString2(tbx_Speed.Text.ToString());
+                //        MyData.rd_MoveSpeed.WriteItem(r_pp, Pindex - 1);
+
+                //        ABB.Robotics.Controllers.RapidDomain.String r_zone = new ABB.Robotics.Controllers.RapidDomain.String();
+                //        r_zone.FillFromString(cbx_Zone.SelectedItem.ToString());
+                //        MyData.rd_Zone.WriteItem(r_zone, Pindex - 1);
+
+                //        Num r_SF = new Num();
+                //        r_SF.FillFromString2(tbx_Force.Text.ToString());
+                //        MyData.rd_SetForce.WriteItem(r_SF, Pindex - 1);
+
+                //        Num r_MT = new Num();
+                //        r_MT.FillFromString2(cbx_MoveType.SelectedItem.ToString());
+                //        MyData.rd_MoveType.WriteItem(r_MT, Pindex - 1);
+
+                //        if (cbx_PointAllow.Checked)
+                //        {
+                //            Bool r_MP = new Bool();
+                //            r_MP.FillFromString2("True");
+                //            MyData.rd_MovePermis.WriteItem(r_MP, Pindex - 1);
+                //        }
+                //        else
+                //        {
+                //            Bool r_MP = new Bool();
+                //            r_MP.FillFromString2("False");
+                //            MyData.rd_MovePermis.WriteItem(r_MP, Pindex - 1);
+                //        }
+                //    }
+                //    for (int i = 0; i < dgv_ShowData.Rows.Count; i++)
+                //    {
+                //        if (dgv_ShowData.Rows[i].Cells[0].Value.ToString()==Pindex.ToString())
+                //        {
+                //            dgv_ShowData.Rows[i].SetValues((Pindex).ToString(),GetWaitSign(true)[0],GetMoveType(true), GetSpeed(true)[0], GetZone(true)[0], GetCylinder(true)[0], GetForce(true)[0], GetPermis(true)[0]);
+                //            goto end;
+                //        }
+                //    }
+                //    dgv_ShowData.Rows.Add((Pindex).ToString(), GetWaitSign(true)[0], GetMoveType(true), GetSpeed(true)[0], GetZone(true)[0], GetCylinder(true)[0], GetForce(true)[0], GetPermis(true)[0]);
                     
-                }
-                catch (Exception re)
-                {
-                    MyRobot.JudgeMaster();
-                    MessageBox.Show("没有获得相应权限" + re.Message);
+                //}
+                //catch (Exception re)
+                //{
+                //    MyRobot.JudgeMaster();
+                //    MessageBox.Show("没有获得相应权限" + re.Message);
 
-                }
+                //}
 
             }
             end:
@@ -632,28 +678,8 @@ namespace DeskTestDome
             }
         }
 
-        public void ShowData()
-        {
-
-        }
-
-        public void AddShowData()
-        {
-
-        }
-
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //rd_Dataindex.Dispose();
-            //rd_TestNum.Dispose();
-            //rd_MaxTestTimes.Dispose();
-            //rd_Point.Dispose();
-            //rd_MoveSpeed.Dispose();
-            //rd_Zone.Dispose();
-            //rd_SelectAction.Dispose();
-            //rd_SetForce.Dispose();
-            //rd_PressPermis.Dispose();
-            //rd_MovePermis.Dispose();
             if (MyRobot != null)
             {
                 MyRobot.JudgeMaster();
@@ -703,6 +729,17 @@ namespace DeskTestDome
 
         }
 
+        public string JudgeStringEmpty(string objectString)
+        {
+            if (objectString == string.Empty)
+            {
+                return "×";
+            }
+            else
+            {
+                return objectString;
+            }
+        }
 
         public string[] GetRobotNumArray(bool JIndex, ArrayData pp)
         {
@@ -792,15 +829,22 @@ namespace DeskTestDome
             int i = 0;
             foreach (IRapidData item in pp)
             {
-                if (JIndex & i == Pindex - 1)
+                if (JIndex)
                 {
-                    S[0] = item.ToString().Trim('"');
-                    goto End;
+                    if (i == Pindex - 1)
+                    {
+                        S[0] = JudgeStringEmpty(item.ToString().Trim('"'));
+                        goto end;
+                    }
+                    
                 }
-                S[i] = item.ToString().Trim('"');
+                else
+                {
+                    S[i] = JudgeStringEmpty(item.ToString().Trim('"'));
+                }
                 i++;
             }
-        End:
+            end:
             return S;
         }
 
@@ -1248,9 +1292,9 @@ namespace DeskTestDome
             {
                 if (dgv_ShowData.Rows[i].Cells[0].Value.ToString() == Pindex.ToString())
                 {
-                    string s = dgv_ShowData.Rows[i].Cells[3].Value.ToString();
+                    string s = dgv_ShowData.Rows[i].Cells[5].Value.ToString();
                     s = s.Remove(1, 1).Insert(1, S);
-                    dgv_ShowData.Rows[i].Cells[3].Value = s;
+                    dgv_ShowData.Rows[i].Cells[5].Value = s;
                     goto jump;
                 }
             }
@@ -1282,9 +1326,9 @@ namespace DeskTestDome
             {
                 if (dgv_ShowData.Rows[i].Cells[0].Value.ToString() == Pindex.ToString())
                 {
-                    string s = dgv_ShowData.Rows[i].Cells[3].Value.ToString();
-                    s = s.Remove(4, 1).Insert(4, S);
-                    dgv_ShowData.Rows[i].Cells[3].Value = s;
+                    string s = dgv_ShowData.Rows[i].Cells[5].Value.ToString();
+                    s = s.Remove(5, 1).Insert(5, S);
+                    dgv_ShowData.Rows[i].Cells[5].Value = s;
                     goto jump;
                 }
             }
@@ -1316,9 +1360,9 @@ namespace DeskTestDome
             {
                 if (dgv_ShowData.Rows[i].Cells[0].Value.ToString() == Pindex.ToString())
                 {
-                    string s = dgv_ShowData.Rows[i].Cells[3].Value.ToString();
-                    s = s.Remove(7, 1).Insert(7, S);
-                    dgv_ShowData.Rows[i].Cells[3].Value = s;
+                    string s = dgv_ShowData.Rows[i].Cells[5].Value.ToString();
+                    s = s.Remove(9, 1).Insert(9, S);
+                    dgv_ShowData.Rows[i].Cells[5].Value = s;
                     goto jump;
                 }
             }
@@ -1359,6 +1403,11 @@ namespace DeskTestDome
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
+
+        private void cbx_cy2_CheckedChanged(object sender, EventArgs e)
         {
 
         }
