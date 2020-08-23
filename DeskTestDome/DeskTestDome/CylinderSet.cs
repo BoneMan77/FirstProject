@@ -29,7 +29,7 @@ namespace DeskTestDome
 
         private void CylinderSet_Load(object sender, EventArgs e)
         {
-            Form1 f1 = new Form1();
+            Frmain f1 = new Frmain();
             cPint = f1.Pindex;
             JudgeColor();
             

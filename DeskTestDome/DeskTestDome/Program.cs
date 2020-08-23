@@ -8,7 +8,7 @@ namespace DeskTestDome
 {
     static class Program
     {
-        public static Form1 MainForm;
+        public static Frmain MainForm;
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -17,7 +17,7 @@ namespace DeskTestDome
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MainForm = new Form1();
+            MainForm = new Frmain();
             Application.Run(MainForm);
         }
     }

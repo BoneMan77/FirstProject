@@ -17,7 +17,7 @@ using System.Threading;
 
 namespace DeskTestDome
 {
-    public partial class Form1 : Form
+    public partial class Frmain : Form
     {
 
         //控制器信息
@@ -69,7 +69,7 @@ namespace DeskTestDome
         public event PindexValueChange OnPindexValueChange;
 
         public delegate void DelegateUpdateView();
-        public Form1()
+        public Frmain()
         {
             InitializeComponent();
         }
