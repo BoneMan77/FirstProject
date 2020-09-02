@@ -1,4 +1,5 @@
-﻿using ABB.Robotics.Controllers.RapidDomain;
+﻿using ABB.Robotics.Controllers.EventLogDomain;
+using ABB.Robotics.Controllers.RapidDomain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,23 @@ namespace DeskTestDome
 
         private RapidData Rd_MoveSpeed;//机器人速度
 
+        private EventLog Rd_EventLog;//机器人报警数据
+
+        /// <summary>
+        /// 机器人报警数据
+        /// </summary>
+        public EventLog rd_EventLog
+        {
+            get
+            {
+                Rd_EventLog = RobotClass.con.EventLog;
+                return Rd_EventLog;
+            }
+            set
+            {
+                Rd_EventLog = value;
+            }
+        }
         /// <summary>
         /// 机器人速度
         /// </summary>

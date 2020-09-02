@@ -59,6 +59,7 @@
     <Compile Include="CylinderSet.Designer.cs">
       <DependentUpon>CylinderSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileHelper.cs" />
     <Compile Include="Frmain.cs">
       <SubType>Form</SubType>
     </Compile>

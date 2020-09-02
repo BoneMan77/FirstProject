@@ -52,7 +52,6 @@ D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\bin\Debug\RobotStudio.Serv
 D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\bin\Debug\ABB.Robotics.Controllers.PC.xml
 D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.csprojAssemblyReference.cache
 D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.CylinderSet.resources
-D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.Form1.resources
 D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.JudgeForm.resources
 D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.Properties.Resources.resources
 D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.csproj.GenerateResource.cache
@@ -76,3 +75,4 @@ D:\github\FirstProject\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.csproj.C
 D:\github\FirstProject\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.csproj.CopyComplete
 D:\github\FirstProject\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.exe
 D:\github\FirstProject\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.pdb
+D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\obj\Debug\DeskTestDome.Frmain.resources

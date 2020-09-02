@@ -14,6 +14,7 @@ using ABB.Robotics.Controllers.MotionDomain;
 using ABB.Robotics.Controllers.RapidDomain;
 using ABB.Robotics.Controllers.IOSystemDomain;
 using System.Threading;
+using ABB.Robotics.Controllers.EventLogDomain;
 
 namespace DeskTestDome
 {
@@ -69,6 +70,8 @@ namespace DeskTestDome
         public event PindexValueChange OnPindexValueChange;
 
         public delegate void DelegateUpdateView();
+
+        EventLogMessage mgs;
         public Frmain()
         {
             InitializeComponent();
@@ -91,7 +94,7 @@ namespace DeskTestDome
                 tbx_index.Text = Pindex.ToString();
                 dgv_ShowData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgv_ShowData.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                AddItemD();
+                //AddItemD();
             }
             catch (Exception)
             {
@@ -102,28 +105,23 @@ namespace DeskTestDome
             }
         }
 
-        private void AddItemD()
-        {
-            dgv_signalBound.AllowDrop = true;
-            treeView1.AllowDrop = true;
-            for (int i = 0; i < 5; i++)
-            {
-                dgv_signalBound.Rows.Add(i, "信号" + i.ToString());
-            }
-            this.treeView1.DragDrop += TreeView1_DragDrop;
-            this.treeView1.DragOver += TreeView1_DragOver;
-        }
+        //private void AddItemD()
+        //{
+        //    dgv_signalBound.AllowDrop = true;
+        //    treeView1.AllowDrop = true;
+        //    for (int i = 0; i < 5; i++)
+        //    {
+        //        dgv_signalBound.Rows.Add(i, "信号" + i.ToString());
+        //    }
+        //    this.treeView1.DragDrop += TreeView1_DragDrop;
+        //    this.treeView1.DragOver += TreeView1_DragOver;
+        //}
 
-        private void TreeView1_DragOver(object sender, DragEventArgs e)
-        {
-            e.Effect = DragDropEffects.Copy;
-        }
-
-        private void TreeView1_DragDrop(object sender, DragEventArgs e)
-        {
-            string item = (string)e.Data.GetData(DataFormats.Text);
-            this.treeView1.Nodes.Add(item);
-        }
+        //private void TreeView1_DragDrop(object sender, DragEventArgs e)
+        //{
+        //    string item = (string)e.Data.GetData(DataFormats.Text);
+        //    this.treeView1.Nodes.Add(item);
+        //}
 
         //程序退出时运行
         private void Application_ApplicationExit(object sender, EventArgs e)
@@ -201,48 +199,29 @@ namespace DeskTestDome
 
         public void EventChanged()
         {
+
             RobotClass.con.Rapid.ExecutionStatusChanged += Rapid_ExecutionStatusChanged;
             RobotClass.con.StateChanged += Con_StateChanged; ;
             RobotClass.con.OperatingModeChanged += Con_OperatingModeChanged;
             MyData.rd_TestNum.ValueChanged += Rd_TestNum_ValueChanged;
             MyData.rd_Dataindex.ValueChanged += Rd_Dataindex_ValueChanged;
-            //if (!RobotClass.con.IsMaster)
-            //{
-            //    MyRobot.MasterConytol();
-            //    RobotClass.con.Rapid.MastershipChanged += Rapid_MastershipChanged;
-            //}
+            MyData.rd_EventLog.MessageWritten += Rd_EventLog_MessageWritten;
+        }
+
+        private void Rd_EventLog_MessageWritten(object sender, ABB.Robotics.Controllers.EventLogDomain.MessageWrittenEventArgs e)
+        {
+            mgs = e.Message;
+            this.BeginInvoke(new MethodInvoker(() =>
+            {
+                dgv_log.Rows.Add(mgs.Number, mgs.Title, mgs.Timestamp);
+                dgv_log.FirstDisplayedScrollingRowIndex = dgv_log.Rows.Count - 1;
+            }));
         }
 
         private void Con_OperatingModeChanged(object sender, OperatingModeChangeEventArgs e)
         {
             lbe_runStatus.Text = RobotClass.con.OperatingMode.ToString();
         }
-
- 
-
-        //private void Rapid_MastershipChanged(object sender, MastershipChangedEventArgs e)
-        //{
-        //    if (RobotClass.con.IsMaster)
-        //    {
-        //        lbe_connectStaus.Text = "权限已请求";
-        //    }
-        //    else
-        //    {
-        //        lbe_connectStaus.Text = "权限已退出";
-        //    }
-
-        //}
-
-        private void M_MastershipChanged(object sender, MastershipChangedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void Con_MastershipChanged(object sender, MastershipChangedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
 
         private void Rd_Dataindex_ValueChanged(object sender, DataValueChangedEventArgs e)
         {
@@ -339,112 +318,88 @@ namespace DeskTestDome
         //}
 
         //判断点位结果
-        private void JudgePress()
-        {
-            ArrayData pp = (ArrayData)MyData.rd_PressPermis.Value;
 
-            switch (((Bool)pp[Pindex - 1]).ToString())
+        private void PindexChangeControlPerpor(ArrayData AD, Control c,int i=-1)
+        {
+            if (c.GetType() == typeof(Button))
             {
-                case "True":
-                    btn_ForceControl.BackColor = Color.Red;
-                    break;
-                case "False":
-                    btn_ForceControl.BackColor = Color.Gainsboro;
-                    break;
-                default:
-                    btn_ForceControl.BackColor = Color.Gainsboro;
-                    break;
-            }
-            ArrayData sa = (ArrayData)MyData.rd_SelectAction.Value;
-            switch (((Bool)sa[Pindex - 1,0]).ToString())
-            {
-                case "True":
-                    btn_cy1.BackColor = Color.Red;
-                    break;
-                case "False":
-                    btn_cy1.BackColor = Color.Gainsboro;
-                    break;
-                default:
-                    btn_cy1.BackColor = Color.Gainsboro;
-                    break;
-            }
-            switch (((Bool)sa[Pindex - 1, 1]).ToString())
-            {
-                case "True":
-                    btn_cy2.BackColor = Color.Red;
-                    break;
-                case "False":
-                    btn_cy2.BackColor = Color.Gainsboro;
-                    break;
-                default:
-                    btn_cy2.BackColor = Color.Gainsboro;
-                    break;
-            }
-            switch (((Bool)sa[Pindex - 1, 2]).ToString())
-            {
-                case "True":
-                    btn_cy3.BackColor = Color.Red;
-                    break;
-                case "False":
-                    btn_cy3.BackColor = Color.Gainsboro;
-                    break;
-                default:
-                    btn_cy3.BackColor = Color.Gainsboro;
-                    break;
-            }
-            ArrayData JW = (ArrayData)MyData.rd_JudgeWaitStartSign.Value;
-            switch (((Bool)JW[Pindex - 1, 0]).ToString())
-            {
-                case "True":
-                    cbx_cy1.Checked = false;
-                    break;
-                case "False":
-                    cbx_cy1.Checked = true;
-                    break;
-                default:
-                    cbx_cy1.Checked = false;
-                    break;
-            }
-            switch (((Bool)JW[Pindex - 1, 1]).ToString())
-            {
-                case "True":
-                    cbx_cy2.Checked = false;
-                    break;
-                case "False":
-                    cbx_cy2.Checked = true;
-                    break;
-                default:
-                    cbx_cy2.Checked = false;
-                    break;
-            }
-            switch (((Bool)JW[Pindex - 1, 2]).ToString())
-            {
-                case "True":
-                    cbx_cy3.Checked = false;
-                    break;
-                case "False":
-                    cbx_cy3.Checked = true;
-                    break;
-                default:
-                    cbx_cy3.Checked = false;
-                    break;
+                if (i>=0)
+                {
+                    switch (((Bool)AD[Pindex - 1,i]).ToString())
+                    {
+                        case "True":
+                            c.BackColor = Color.Red;
+                            break;
+                        case "False":
+                            c.BackColor = Color.Gainsboro;
+                            break;
+                        default:
+                            c.BackColor = Color.Gainsboro;
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (((Bool)AD[Pindex - 1]).ToString())
+                    {
+                        case "True":
+                            c.BackColor = Color.Red;
+                            break;
+                        case "False":
+                            c.BackColor = Color.Gainsboro;
+                            break;
+                        default:
+                            c.BackColor = Color.Gainsboro;
+                            break;
+                    }
+                }
+                
             }
         }
-        //启动气缸按钮事件
-        private void btn_OpenCylinder_Click(object sender, EventArgs e)
+
+        private void PindexChangeCbxPerpor(ArrayData AD, CheckBox cb,int i)
         {
-
-
-            if (CS == null || CS.IsDisposed)
+           
+                switch (((Bool)AD[Pindex - 1, i]).ToString())
+                {
+                    case "True":
+                        cb.Checked = false;
+                        break;
+                    case "False":
+                        cb.Checked = true;
+                        break;
+                    default:
+                        cb.Checked = false;
+                        break;
+                }
+           
+        }
+        private void JudgePress()
+        {
+            PindexChangeControlPerpor(MyServise.TransformData(MyData.rd_PressPermis), btn_ForceControl);
+            PindexChangeControlPerpor(MyServise.TransformData(MyData.rd_SelectAction), btn_cy1, 0);
+            PindexChangeControlPerpor(MyServise.TransformData(MyData.rd_SelectAction), btn_cy2, 1);
+            PindexChangeControlPerpor(MyServise.TransformData(MyData.rd_SelectAction), btn_cy3, 2);
+            PindexChangeCbxPerpor(MyServise.TransformData(MyData.rd_JudgeWaitStartSign), cbx_cy1, 0);
+            PindexChangeCbxPerpor(MyServise.TransformData(MyData.rd_JudgeWaitStartSign), cbx_cy2, 1);
+            PindexChangeCbxPerpor(MyServise.TransformData(MyData.rd_JudgeWaitStartSign), cbx_cy3, 2);
+            PindexChangeCbxPerpor(MyServise.TransformData(MyData.rd_JudgeWaitMidSign), cbx_cyc1, 0);
+            PindexChangeCbxPerpor(MyServise.TransformData(MyData.rd_JudgeWaitMidSign), cbx_cyc2, 1);
+            PindexChangeCbxPerpor(MyServise.TransformData(MyData.rd_JudgeWaitMidSign), cbx_cyc3, 2);
+            PindexChangeCbxPerpor(MyServise.TransformData(MyData.rd_JudgeWaitMidSign), cbx_cyc3, 2);
+            ArrayData mp = (ArrayData)MyData.rd_MovePermis.Value;
+            switch (((Bool)mp[Pindex - 1]).ToString())
             {
-                CS = new CylinderSet(); ;
-                CS.Show();
+                case "True":
+                    cbx_PointAllow.Checked = true;
+                    break;
+                case "False":
+                    cbx_PointAllow.Checked = false;
+                    break;
+                default:
+                    cbx_PointAllow.Checked = true;
+                    break;
             }
-            else
-            {
-                CS.Activate();
-            }
-
         }
         //力控制按钮
         private void btn_ForceControl_Click(object sender, EventArgs e)
@@ -464,17 +419,13 @@ namespace DeskTestDome
                     if (((Bool)pp[Pindex - 1]).ToString() == "True")
                     {
                         btn_ForceControl.BackColor = Color.Gainsboro;
-                        Bool r_pp = new Bool();
-                        r_pp.FillFromString2("False");
-                        MyData.rd_PressPermis.WriteItem(r_pp, Pindex - 1);
+                        MyServise.WriteData(MyData.rd_PressPermis, "False", Pindex - 1);
                         
                     }
                     if (((Bool)pp[Pindex - 1]).ToString() == "False")
                     {
                         btn_ForceControl.BackColor = Color.Red;
-                        Bool r_pp = new Bool();
-                        r_pp.FillFromString2("True");
-                        MyData.rd_PressPermis.WriteItem(r_pp, Pindex - 1);
+                        MyServise.WriteData(MyData.rd_PressPermis, "True", Pindex - 1);
                         S = true;
                     }
                 }
@@ -485,7 +436,7 @@ namespace DeskTestDome
                         if (dgv_ShowData.Rows[i].Cells[0].Value.ToString() == Pindex.ToString())
                         {
                             ArrayData sf = (ArrayData)MyData.rd_SetForce.Value;
-                            dgv_ShowData.Rows[i].Cells[4].Value = sf[Pindex-1].ToString();
+                            dgv_ShowData.Rows[i].Cells[6].Value = sf[Pindex-1].ToString();
                             goto jump;
                         }
                     }
@@ -496,7 +447,7 @@ namespace DeskTestDome
                     {
                         if (dgv_ShowData.Rows[i].Cells[0].Value.ToString() == Pindex.ToString())
                         {
-                            dgv_ShowData.Rows[i].Cells[4].Value = "×";
+                            dgv_ShowData.Rows[i].Cells[6].Value = "×";
                             goto jump;
                         }
                     }
@@ -525,7 +476,6 @@ namespace DeskTestDome
                 {
                     pindex = value;
                     PindexValueChang();
-                    JudgePress();
                 }
                 
             }
@@ -552,34 +502,24 @@ namespace DeskTestDome
                 MyRobot.MasterConytol(btn_ClearPower);
                 if (MyData.rd_MoveSpeed.IsArray)
                 {
-                    Num r_pp = new Num();
-                    r_pp.FillFromString2(tbx_Speed.Text.ToString());
-                    MyData.rd_MoveSpeed.WriteItem(r_pp, Pindex - 1);
-
-                    ABB.Robotics.Controllers.RapidDomain.String r_zone = new ABB.Robotics.Controllers.RapidDomain.String();
-                    r_zone.FillFromString(cbx_Zone.SelectedItem.ToString());
-                    MyData.rd_Zone.WriteItem(r_zone, Pindex - 1);
-
-                    Num r_SF = new Num();
-                    r_SF.FillFromString2(tbx_Force.Text.ToString());
-                    MyData.rd_SetForce.WriteItem(r_SF, Pindex - 1);
-
-                    ABB.Robotics.Controllers.RapidDomain.String r_MT = new ABB.Robotics.Controllers.RapidDomain.String();
-                    r_MT.FillFromString(cbx_MoveType.SelectedItem.ToString());
-                    MyData.rd_MoveType.WriteItem(r_MT, Pindex - 1);
-
-                    if (cbx_PointAllow.Checked)
+                    List<RapidData> RDataList = new List<RapidData>()
                     {
-                        Bool r_MP = new Bool();
-                        r_MP.FillFromString2("True");
-                        MyData.rd_MovePermis.WriteItem(r_MP, Pindex - 1);
-                    }
-                    else
+                        MyData.rd_MoveSpeed,
+                        MyData.rd_Zone,
+                        MyData.rd_SetForce,
+                        MyData.rd_MoveType,
+                        MyData.rd_MovePermis
+                    };
+
+                    List<string> RValueList = new List<string>()
                     {
-                        Bool r_MP = new Bool();
-                        r_MP.FillFromString2("False");
-                        MyData.rd_MovePermis.WriteItem(r_MP, Pindex - 1);
-                    }
+                        tbx_Speed.Text,
+                        cbx_Zone.SelectedItem.ToString(),
+                        tbx_Force.Text,
+                        cbx_MoveType.SelectedItem.ToString(),
+                        cbx_PointAllow.Checked.ToString()
+                    };
+                    MyServise.WriteData(RDataList, RValueList, Pindex - 1);
                 }
                 for (int i = 0; i < dgv_ShowData.Rows.Count; i++)
                 {
@@ -590,64 +530,10 @@ namespace DeskTestDome
                     }
                 }
                 dgv_ShowData.Rows.Add((Pindex).ToString(), GetWaitSign(true)[0], GetMoveType(true), GetSpeed(true)[0], GetZone(true)[0], GetCylinder(true)[0], GetForce(true)[0], GetPermis(true)[0]);
-
-                //try
-                //{
-                //    MyRobot.MasterConytol(btn_ClearPower);
-                //    if (MyData.rd_MoveSpeed.IsArray)
-                //    {
-                //        Num r_pp = new Num();
-                //        r_pp.FillFromString2(tbx_Speed.Text.ToString());
-                //        MyData.rd_MoveSpeed.WriteItem(r_pp, Pindex - 1);
-
-                //        ABB.Robotics.Controllers.RapidDomain.String r_zone = new ABB.Robotics.Controllers.RapidDomain.String();
-                //        r_zone.FillFromString(cbx_Zone.SelectedItem.ToString());
-                //        MyData.rd_Zone.WriteItem(r_zone, Pindex - 1);
-
-                //        Num r_SF = new Num();
-                //        r_SF.FillFromString2(tbx_Force.Text.ToString());
-                //        MyData.rd_SetForce.WriteItem(r_SF, Pindex - 1);
-
-                //        Num r_MT = new Num();
-                //        r_MT.FillFromString2(cbx_MoveType.SelectedItem.ToString());
-                //        MyData.rd_MoveType.WriteItem(r_MT, Pindex - 1);
-
-                //        if (cbx_PointAllow.Checked)
-                //        {
-                //            Bool r_MP = new Bool();
-                //            r_MP.FillFromString2("True");
-                //            MyData.rd_MovePermis.WriteItem(r_MP, Pindex - 1);
-                //        }
-                //        else
-                //        {
-                //            Bool r_MP = new Bool();
-                //            r_MP.FillFromString2("False");
-                //            MyData.rd_MovePermis.WriteItem(r_MP, Pindex - 1);
-                //        }
-                //    }
-                //    for (int i = 0; i < dgv_ShowData.Rows.Count; i++)
-                //    {
-                //        if (dgv_ShowData.Rows[i].Cells[0].Value.ToString()==Pindex.ToString())
-                //        {
-                //            dgv_ShowData.Rows[i].SetValues((Pindex).ToString(),GetWaitSign(true)[0],GetMoveType(true), GetSpeed(true)[0], GetZone(true)[0], GetCylinder(true)[0], GetForce(true)[0], GetPermis(true)[0]);
-                //            goto end;
-                //        }
-                //    }
-                //    dgv_ShowData.Rows.Add((Pindex).ToString(), GetWaitSign(true)[0], GetMoveType(true), GetSpeed(true)[0], GetZone(true)[0], GetCylinder(true)[0], GetForce(true)[0], GetPermis(true)[0]);
-                    
-                //}
-                //catch (Exception re)
-                //{
-                //    MyRobot.JudgeMaster();
-                //    MessageBox.Show("没有获得相应权限" + re.Message);
-
-                //}
-
             }
             end:
             btn_Enter.BackColor = Color.Gainsboro;
             Pindex += 1;
-            //JudgePress();
         }
 
         private void btn_ChangeIndex_Click(object sender, EventArgs e)
@@ -690,7 +576,7 @@ namespace DeskTestDome
 
         public void GetData()
         {
-            //label8.Text = "线程开始";
+            //线程开始;
             SpeedData = GetSpeed(false);
             ZoneData = GetZone(false);
             CylinderData = GetCylinder(false);
@@ -699,7 +585,7 @@ namespace DeskTestDome
             MoveTypeData = GetMoveType(false);
             WaitSignalData = GetWaitSign(false);
             end = "1";
-            //label8.Text = "线程结束";
+            //线程结束;
         }
 
         private void btn_Updata_Click(object sender, EventArgs e)
@@ -726,7 +612,6 @@ namespace DeskTestDome
                 }
                 lbe_threadShow.Text = "数据加载完成";
             }));
-
         }
 
         public string JudgeStringEmpty(string objectString)
@@ -755,25 +640,6 @@ namespace DeskTestDome
                 for (int i = 0; i < pp.Length; i++)
                 {
                     S[i] = ((Num)pp[i]).ToString();
-                }
-                return S;
-            }
-        }
-
-        public string[] GetRobotStrArray(bool JIndex, ArrayData pp)
-        {
-            if (JIndex)
-            {
-                string[] S = new string[100];
-                S[0] = ((ABB.Robotics.Controllers.RapidDomain.String)pp[Pindex - 1]).Value.ToString();
-                return S;
-            }
-            else
-            {
-                string[] S = new string[100];
-                for (int i = 0; i < pp.Length; i++)
-                {
-                    S[i] = (pp[i]).ToString();
                 }
                 return S;
             }
@@ -876,12 +742,8 @@ namespace DeskTestDome
 
         }
 
-
-
         public string[] GetCylinder(bool JIndex)
         {
-            //rd_JudgeWaitStartSign = RobotClass.con.Rapid.GetRapidData("T_ROB1", "RobotData", "JudgeWaitStartSign");
-            //rd_JudgeWaitMidSign = RobotClass.con.Rapid.GetRapidData("T_ROB1", "RobotData", "JudgeWaitMidSign");
             ArrayData pp = (ArrayData)MyData.rd_SelectAction.Value;
             string RS1 = ((Bool)pp[Pindex - 1, 0]).ToString();
             string RS2 = ((Bool)pp[Pindex - 1, 1]).ToString();
@@ -1013,11 +875,6 @@ namespace DeskTestDome
 
         }
 
-        private void dgv_ShowData_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-
-        }
-
         private void btn_ClearPower_Click(object sender, EventArgs e)
         {
             if (MyRobot != null)
@@ -1081,11 +938,6 @@ namespace DeskTestDome
             {
                 Pindex = Convert.ToInt16(dgv_ShowData.SelectedRows[0].Cells[0].Value);
             }
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btn_cy1_Click(object sender, EventArgs e)
@@ -1268,24 +1120,63 @@ namespace DeskTestDome
             }
         }
 
-        private void cbx_cy1_Click(object sender, EventArgs e)
+        private void cbx_Click(object sender, EventArgs e)
         {
             MyRobot.MasterConytol(btn_ClearPower);
             string S = string.Empty;
-            if (!cbx_cy1.Checked)
+            RapidData RData = null;
+            int Sindex = 0;
+            int DgvIndex = 0;
+            CheckBox cb = (CheckBox)sender;
+            switch (cb.Name)
+            {
+                case "cbx_cy1":
+                    RData = MyData.rd_JudgeWaitStartSign;
+                    Sindex = 0;
+                    DgvIndex = 1;
+                    break;
+                case "cbx_cy2":
+                    RData = MyData.rd_JudgeWaitStartSign;
+                    Sindex = 1;
+                    DgvIndex = 5;
+                    break;
+                case "cbx_cy3":
+                    RData = MyData.rd_JudgeWaitStartSign;
+                    Sindex = 2;
+                    DgvIndex = 9;
+                    break;
+                case "cbx_cyc1":
+                    RData = MyData.rd_JudgeWaitMidSign;
+                    Sindex = 0;
+                    DgvIndex = 2;
+                    break;
+                case "cbx_cyc2":
+                    RData = MyData.rd_JudgeWaitMidSign;
+                    Sindex = 1;
+                    DgvIndex = 6;
+                    break;
+                case "cbx_cyc3":
+                    RData = MyData.rd_JudgeWaitMidSign;
+                    Sindex = 2;
+                    DgvIndex = 10;
+                    break;
+                default:
+                    break;
+            }
+            if (!cb.Checked)
             {
                 Bool r_pp = new Bool();
                 r_pp.FillFromString2("True");
-                MyData.rd_JudgeWaitStartSign.WriteItem(r_pp, Pindex - 1, 0);
-                cbx_cy1.Checked = false;
+                MyServise.WriteData(RData, r_pp, Pindex - 1, Sindex);
+                cb.Checked = false;
                 S = "1";
             }
             else
             {
                 Bool r_pp = new Bool();
                 r_pp.FillFromString2("False");
-                MyData.rd_JudgeWaitStartSign.WriteItem(r_pp, Pindex - 1, 0);
-                cbx_cy1.Checked = true;
+                MyServise.WriteData(RData, r_pp, Pindex - 1, Sindex);
+                cb.Checked = true;
                 S = "0";
             }
             for (int i = 0; i < dgv_ShowData.Rows.Count; i++)
@@ -1293,75 +1184,7 @@ namespace DeskTestDome
                 if (dgv_ShowData.Rows[i].Cells[0].Value.ToString() == Pindex.ToString())
                 {
                     string s = dgv_ShowData.Rows[i].Cells[5].Value.ToString();
-                    s = s.Remove(1, 1).Insert(1, S);
-                    dgv_ShowData.Rows[i].Cells[5].Value = s;
-                    goto jump;
-                }
-            }
-        jump:
-            S = null;
-        }
-
-        private void cbx_cy2_Click(object sender, EventArgs e)
-        {
-            MyRobot.MasterConytol(btn_ClearPower);
-            string S = string.Empty;
-            if (!cbx_cy2.Checked)
-            {
-                Bool r_pp = new Bool();
-                r_pp.FillFromString2("True");
-                MyData.rd_JudgeWaitStartSign.WriteItem(r_pp, Pindex - 1, 1);
-                cbx_cy2.Checked = false;
-                S = "1";
-            }
-            else
-            {
-                Bool r_pp = new Bool();
-                r_pp.FillFromString2("False");
-                MyData.rd_JudgeWaitStartSign.WriteItem(r_pp, Pindex - 1, 1);
-                cbx_cy2.Checked = true;
-                S = "0";
-            }
-            for (int i = 0; i < dgv_ShowData.Rows.Count; i++)
-            {
-                if (dgv_ShowData.Rows[i].Cells[0].Value.ToString() == Pindex.ToString())
-                {
-                    string s = dgv_ShowData.Rows[i].Cells[5].Value.ToString();
-                    s = s.Remove(5, 1).Insert(5, S);
-                    dgv_ShowData.Rows[i].Cells[5].Value = s;
-                    goto jump;
-                }
-            }
-        jump:
-            S = null;
-        }
-
-        private void cbx_cy3_Click(object sender, EventArgs e)
-        {
-            MyRobot.MasterConytol(btn_ClearPower);
-            string S = string.Empty;
-            if (!cbx_cy3.Checked)
-            {
-                Bool r_pp = new Bool();
-                r_pp.FillFromString2("True");
-                MyData.rd_JudgeWaitStartSign.WriteItem(r_pp, Pindex - 1, 2);
-                cbx_cy3.Checked = false;
-                S = "1";
-            }
-            else
-            {
-                Bool r_pp = new Bool();
-                r_pp.FillFromString2("False");
-                MyData.rd_JudgeWaitStartSign.WriteItem(r_pp, Pindex - 1, 2);
-                cbx_cy3.Checked = true;
-                S = "0";
-            }
-            for (int i = 0; i < dgv_ShowData.Rows.Count; i++)
-            {
-                if (dgv_ShowData.Rows[i].Cells[0].Value.ToString() == Pindex.ToString())
-                {
-                    string s = dgv_ShowData.Rows[i].Cells[5].Value.ToString();
-                    s = s.Remove(9, 1).Insert(9, S);
+                    s = s.Remove(DgvIndex, 1).Insert(DgvIndex, S);
                     dgv_ShowData.Rows[i].Cells[5].Value = s;
                     goto jump;
                 }
@@ -1379,35 +1202,41 @@ namespace DeskTestDome
             dgv_signalBound.DoDragDrop(dgv_signalBound.SelectedRows[0].Cells[1].Value, DragDropEffects.Copy);
         }
 
-        private void 删除信号ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-                this.treeView1.SelectedNode.Remove();
-        }
+        //private void 删除信号ToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //        this.treeView1.SelectedNode.Remove();
+        //}
 
-        private void treeView1_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (treeView1.SelectedNode==null)
-            {
-                this.treeView1.ContextMenuStrip = null;
-                return;
-            }
-            if (MouseButtons==MouseButtons.Right)
-            {
-                this.treeView1.ContextMenuStrip = this.contextMenuStrip1;
-            }
-        }
+        //private void treeView1_MouseDown(object sender, MouseEventArgs e)
+        //{
+        //    if (treeView1.SelectedNode==null)
+        //    {
+        //        this.treeView1.ContextMenuStrip = null;
+        //        return;
+        //    }
+        //    if (MouseButtons==MouseButtons.Right)
+        //    {
+        //        this.treeView1.ContextMenuStrip = this.contextMenuStrip1;
+        //    }
+        //}
 
         private void dgv_ShowData_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        private void cbx_cy2_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void cbx_cy2_CheckedChanged(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            MyRobot.MasterConytol(btn_ClearPower);
+            MyServise.WriteData(MyData.rd_MaxTestTimes, tbx_MaxTImes.Text);
+        }
+
+        private void dgv_signalBound_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
