@@ -63,10 +63,19 @@ namespace DeskTestDome
         RobotData MyData = new RobotData();
         RobotServise MyServise = new RobotServise();
 
+        //实例化FileHelper类
+        FileHelper FileHelp = new FileHelper();
+
+        //实例化FileIndex类
+        FileIndex MyFileIndex = new FileIndex();
+
         //实例化窗口
         CylinderSet CS;
 
-        public delegate void PindexValueChange(object sender, EventArgs e);
+        //信号读取地址
+        string StrPath = @"D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\bin\Debug\信号描述.txt";
+
+        public delegate void PindexValueChange();
         public event PindexValueChange OnPindexValueChange;
 
         public delegate void DelegateUpdateView();
@@ -94,6 +103,7 @@ namespace DeskTestDome
                 tbx_index.Text = Pindex.ToString();
                 dgv_ShowData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgv_ShowData.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                SignalShow();
                 //AddItemD();
             }
             catch (Exception)
@@ -147,7 +157,7 @@ namespace DeskTestDome
             btn_ClearPower.Enabled = true;
         }
         //委托变化
-        private void Form1_OnPindexValueChange(object sender, EventArgs e)
+        private void Form1_OnPindexValueChange()
         {
             tbx_index.Text = (Pindex).ToString();
             JudgePress();
@@ -483,10 +493,7 @@ namespace DeskTestDome
         //Pindex值变化方法
         public void PindexValueChang()
         {
-            if (OnPindexValueChange != null)
-            {
-                OnPindexValueChange(this, null);
-            }
+            OnPindexValueChange?.Invoke();
         }
 
         private void btn_Enter_Click(object sender, EventArgs e)
@@ -1193,14 +1200,7 @@ namespace DeskTestDome
             S = null;
         }
 
-        private void dgv_signalBound_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (dgv_signalBound.SelectedRows==null)
-            {
-                return;
-            }
-            dgv_signalBound.DoDragDrop(dgv_signalBound.SelectedRows[0].Cells[1].Value, DragDropEffects.Copy);
-        }
+       
 
         //private void 删除信号ToolStripMenuItem_Click(object sender, EventArgs e)
         //{
@@ -1239,6 +1239,178 @@ namespace DeskTestDome
         private void dgv_signalBound_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void SignalShow()
+        {
+           FileHelp.Signaldescription(StrPath, MyFileIndex.strIndex,MyFileIndex.strDescribe);
+            for (int i = 0; i < MyFileIndex.strIndex.Count; i++)
+            {
+                for (int j = 0; j < dgv_signalShow.Rows.Count; j++)
+                {
+                    if (dgv_signalShow.Rows[j].Cells[0].Value!=null && dgv_signalShow.Rows[j].Cells[1].Value!=null)
+                    {
+                        if (dgv_signalShow.Rows[j].Cells[0].Value.Equals(MyFileIndex.strIndex[i]) && dgv_signalShow.Rows[j].Cells[1].Value.Equals(MyFileIndex.strDescribe[i]))
+                        {
+                            goto end;
+                        }
+                    }
+                    else
+                    {
+                        dgv_signalShow.Rows.RemoveAt(j);
+                        dgv_signalShow.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                        dgv_signalShow.ReadOnly = true;
+                        btn_dgvSignalAdd.Visible = false;
+                        goto end;
+                    }
+                    
+                }
+                dgv_signalShow.Rows.Add(MyFileIndex.strIndex[i], MyFileIndex.strDescribe[i]);
+                { Tag = MyFileIndex; };
+            end:
+            string s = null;
+            }
+            dgv_signalShow.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv_signalShow.ReadOnly = true;
+            btn_dgvSignalAdd.Visible = false;
+        }
+        /// <summary>
+        /// 对文本的信号进行删除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //if (dgv_signalShow.SelectedRows.Count == 0)
+            //{
+            //    dgv_signalShow.Rows.Clear();
+            //}
+            //else
+            //{
+            //    for (int i = dgv_signalShow.SelectedRows.Count; i > 0; i--)
+            //    {
+
+            //        dgv_signalShow.Rows.RemoveAt(dgv_signalShow.SelectedRows[i - 1].Index);
+            //    }
+            //}
+            for (int i = 0; i < MyFileIndex.strIndex.Count; i++)
+            {
+                if (MyFileIndex.strIndex[i].Equals(dgv_signalShow.SelectedRows[0].Cells[0].Value.ToString()))
+                {
+                    MyFileIndex.strIndex.RemoveAt(i);
+                    MyFileIndex.strDescribe.RemoveAt(i);
+                }
+            }
+            FileHelp.SingalContentAdd(StrPath, FileHelp.FileIndex_OnListChange(MyFileIndex.StrB, MyFileIndex.strIndex, MyFileIndex.strDescribe));
+            dgv_signalShow.Rows.RemoveAt(dgv_signalShow.SelectedRows[0].Index);
+        }
+        /// <summary>
+        /// 选择对应的信号
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgv_signalShow_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (dgv_signalShow.SelectedRows.Count>0||dgv_signalShow.SelectedCells.Count>0)
+                {
+                    dgv_signalShow.ClearSelection();
+                    dgv_signalShow.Rows[e.RowIndex].Selected = true;
+                    dgv_signalShow.CurrentCell = dgv_signalShow.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    删除ToolStripMenuItem.Visible = true;
+                    cms_signalAction.Show(MousePosition.X, MousePosition.Y);
+                }
+            }
+
+        }
+        /// <summary>
+        /// 表格右键添加功能
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void 添加ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dgv_signalShow.ReadOnly = false;
+            for (int i = 0; i < dgv_signalShow.Rows.Count; i++)
+            {
+                dgv_signalShow.Rows[i].ReadOnly = true;
+            }
+            dgv_signalShow.Rows.Add();
+            dgv_signalShow.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            btn_dgvSignalAdd.Visible = true;
+        }
+
+        private void btn_dgvSignalAdd_Click(object sender, EventArgs e)
+        {
+            if (dgv_signalShow.Rows[dgv_signalShow.Rows.Count-1].Cells[0].Value!=null&& dgv_signalShow.Rows[dgv_signalShow.Rows.Count-1].Cells[1].Value != null)
+            {
+                MyFileIndex.strIndex.Add(dgv_signalShow.Rows[dgv_signalShow.Rows.Count - 1].Cells[0].Value.ToString());
+                MyFileIndex.strDescribe.Add(dgv_signalShow.Rows[dgv_signalShow.Rows.Count - 1].Cells[1].Value.ToString());
+                FileHelp.SingalContentAdd(StrPath, FileHelp.FileIndex_OnListChange(MyFileIndex.StrB,MyFileIndex.strIndex,MyFileIndex.strDescribe));
+            }
+            dgv_signalShow.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv_signalShow.ReadOnly = true;
+            btn_dgvSignalAdd.Visible = false;
+        }
+
+        private void dgv_signalShow_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+
+        }
+
+        private void dgv_signalShow_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+            if (dgv_signalShow.CurrentCell.ColumnIndex==0)
+            {
+                if (!(e.KeyChar >= '0' && e.KeyChar <= '9' || e.KeyChar == '.'))
+                    e.Handled = true;
+                if (e.KeyChar == '\b')
+                    e.Handled = false;
+            }
+           
+        }
+
+        private void dgv_signalShow_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dgv_signalShow.CurrentCell.ColumnIndex==0)
+            {
+                e.Control.KeyPress -= Control_KeyPress;
+                e.Control.KeyPress += Control_KeyPress;
+
+                //e.Control.KeyPress += (object obj, KeyPressEventArgs key) =>
+                //{
+                //    if (!(key.KeyChar >= '0' && key.KeyChar <= '9' || key.KeyChar == '.'))
+                //        key.Handled = true;
+                //    if (key.KeyChar == '\b')
+                //        key.Handled = false;
+                //};
+            }
+        }
+
+        private void Control_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (dgv_signalShow.CurrentCell.ColumnIndex == 0)
+            {
+                if (!(e.KeyChar >= '0' && e.KeyChar <= '9' || e.KeyChar == '.'))
+                    e.Handled = true;
+                if (e.KeyChar == '\b')
+                    e.Handled = false;
+            }
+            
+        }
+
+        private void dgv_signalShow_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (dgv_signalShow.Rows.Count==0)
+                {
+                    删除ToolStripMenuItem.Visible = false;
+                    cms_signalAction.Show(MousePosition.X, MousePosition.Y);
+                }
+            }
         }
     }
 }

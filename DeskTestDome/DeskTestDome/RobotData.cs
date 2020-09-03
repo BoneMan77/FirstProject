@@ -10,35 +10,35 @@ namespace DeskTestDome
 {
     class RobotData
     {
-        public RapidData Rd_Dataindex;//点位信号
+        private RapidData Rd_Dataindex;//点位信号
 
-        public RapidData Rd_TestNum;//测试次数
+        private RapidData Rd_TestNum;//测试次数
 
-        public RapidData Rd_MaxTestTimes;//最大测试次数
+        private RapidData Rd_MaxTestTimes;//最大测试次数
 
-        public RapidData Rd_Point;//测试点位
+        private RapidData Rd_Point;//测试点位
 
-        public RapidData Rd_Zone;//转弯半径
+        private RapidData Rd_Zone;//转弯半径
 
-        public RapidData Rd_SelectAction;//气缸动作信号
+        private RapidData Rd_SelectAction;//气缸动作信号
 
-        public RapidData Rd_SetForce;//设置力值
+        private RapidData Rd_SetForce;//设置力值
 
-        public RapidData Rd_PressPermis;//按压允许
+        private RapidData Rd_PressPermis;//按压允许
 
-        public RapidData Rd_MovePermis;//移动允许
+        private RapidData Rd_MovePermis;//移动允许
 
-        public RapidData Rd_JudgeWaitSign;//等待开始条件信号
+        private RapidData Rd_JudgeWaitSign;//等待开始条件信号
 
-        public RapidData Rd_JudgeWaitMidSign;//等待到位信号
+        private RapidData Rd_JudgeWaitMidSign;//等待到位信号
 
-        public RapidData Rd_JudgeWaitStartSign;//等待中间到位信号
+        private RapidData Rd_JudgeWaitStartSign;//等待中间到位信号
 
-        public RapidData Rd_PointC;//圆弧第二个点
+        private RapidData Rd_PointC;//圆弧第二个点
 
-        public RapidData Rd_MoveType;//移动类型
+        private RapidData Rd_MoveType;//移动类型
 
-        public RapidData Rd_SelectActionReset;//气缸信号复位
+        private RapidData Rd_SelectActionReset;//气缸信号复位
 
         private RapidData Rd_MoveSpeed;//机器人速度
 
