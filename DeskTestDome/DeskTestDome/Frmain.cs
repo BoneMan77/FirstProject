@@ -63,6 +63,13 @@ namespace DeskTestDome
         RobotData MyData = new RobotData();
         RobotServise MyServise = new RobotServise();
 
+
+        //实例化FileHelper类
+        FileHelper MyFile = new FileHelper();
+
+        //实例化FileIndex类
+        FileIndex MyFileIndex = new FileIndex();
+
         //实例化窗口
         CylinderSet CS;
 
@@ -1193,14 +1200,7 @@ namespace DeskTestDome
             S = null;
         }
 
-        private void dgv_signalBound_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (dgv_signalBound.SelectedRows==null)
-            {
-                return;
-            }
-            dgv_signalBound.DoDragDrop(dgv_signalBound.SelectedRows[0].Cells[1].Value, DragDropEffects.Copy);
-        }
+       
 
         //private void 删除信号ToolStripMenuItem_Click(object sender, EventArgs e)
         //{
@@ -1239,6 +1239,83 @@ namespace DeskTestDome
         private void dgv_signalBound_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           MyFile.Signaldescription(@"D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\bin\Debug\信号描述.txt", MyFileIndex.strIndex,MyFileIndex.strDescribe);
+            for (int i = 0; i < MyFileIndex.strIndex.Count; i++)
+            {
+                for (int j = 0; j < dgv_signalShow.Rows.Count; j++)
+                {
+                    if (dgv_signalShow.Rows[j].Cells[0].Value.Equals(MyFileIndex.strIndex[i]))
+                    {
+                        goto end;
+                    }
+                }
+                dgv_signalShow.Rows.Add(MyFileIndex.strIndex[i], MyFileIndex.strDescribe[i]);
+                { Tag = MyFileIndex; };
+            end:
+                string s = null;
+            }
+        }
+
+        private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //if (dgv_signalShow.SelectedRows.Count == 0)
+            //{
+            //    dgv_signalShow.Rows.Clear();
+            //}
+            //else
+            //{
+            //    for (int i = dgv_signalShow.SelectedRows.Count; i > 0; i--)
+            //    {
+
+            //        dgv_signalShow.Rows.RemoveAt(dgv_signalShow.SelectedRows[i - 1].Index);
+            //    }
+            //}
+            StringBuilder Strb = new StringBuilder();
+            for (int i = 0; i < MyFileIndex.strIndex.Count; i++)
+            {
+                if (MyFileIndex.strIndex[i].Equals(dgv_signalShow.SelectedRows[0].Cells[0].Value.ToString()))
+                {
+                    MyFileIndex.strIndex.RemoveAt(i);
+                    MyFileIndex.strDescribe.RemoveAt(i);
+                }
+                else
+                {
+                    Strb.AppendLine(MyFileIndex.strIndex[i] + "：" + MyFileIndex.strDescribe[i]);
+                }
+            }
+            MyFile.SingalContentAdd(@"D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\bin\Debug\信号描述.txt", Strb.ToString());
+            
+            dgv_signalShow.Rows.RemoveAt(dgv_signalShow.SelectedRows[0].Index);
+        }
+
+        private void dgv_signalShow_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (dgv_signalShow.SelectedRows.Count>0)
+                {
+                    dgv_signalShow.ClearSelection();
+                    dgv_signalShow.Rows[e.RowIndex].Selected = true;
+                    dgv_signalShow.CurrentCell = dgv_signalShow.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    cms_signalAction.Show(MousePosition.X, MousePosition.Y);
+                }
+            }
+
+        }
+
+        private void 添加ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dgv_signalShow.AllowUserToAddRows = true;
+            dgv_signalShow.ReadOnly = false;
+            for (int i = 0; i < dgv_signalShow.Rows.Count-1; i++)
+            {
+                dgv_signalShow.Rows[i].ReadOnly = true;
+            }
+            dgv_btnA.Visible = true;
         }
     }
 }
