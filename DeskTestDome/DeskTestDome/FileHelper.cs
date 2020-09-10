@@ -32,7 +32,10 @@ namespace DeskTestDome
 
         public void SingalContentAdd(string path,string Content)
         {
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
             FileStream fs = new FileStream(path, FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
             //开始写入
@@ -48,6 +51,7 @@ namespace DeskTestDome
         {
 
         }
+<<<<<<< HEAD
 
         public String FileIndex_OnListChange(StringBuilder strB,List<string> index,List<string> Describe)
         {
@@ -58,10 +62,13 @@ namespace DeskTestDome
             }
             return strB.ToString();
         }
+=======
+>>>>>>> master
     }
 
     class FileIndex
     {
+<<<<<<< HEAD
         private delegate void ListChange();
         private event ListChange OnListChange;
         private List<string> ObserveStr = new List<string>();
@@ -86,5 +93,15 @@ namespace DeskTestDome
 
         public StringBuilder StrB { get; set; }
 
+=======
+        public FileIndex()
+        {
+            strIndex = new List<string>();
+            strDescribe = new List<string>();
+        }
+        public List<string> strIndex { get; set; }
+        public List<string> strDescribe { get; set; }
+
+>>>>>>> master
     }
 }

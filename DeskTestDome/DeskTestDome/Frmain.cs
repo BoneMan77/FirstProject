@@ -63,8 +63,14 @@ namespace DeskTestDome
         RobotData MyData = new RobotData();
         RobotServise MyServise = new RobotServise();
 
+<<<<<<< HEAD
         //实例化FileHelper类
         FileHelper FileHelp = new FileHelper();
+=======
+
+        //实例化FileHelper类
+        FileHelper MyFile = new FileHelper();
+>>>>>>> master
 
         //实例化FileIndex类
         FileIndex MyFileIndex = new FileIndex();
@@ -1241,13 +1247,20 @@ namespace DeskTestDome
 
         }
 
+<<<<<<< HEAD
         private void SignalShow()
         {
            FileHelp.Signaldescription(StrPath, MyFileIndex.strIndex,MyFileIndex.strDescribe);
+=======
+        private void button1_Click(object sender, EventArgs e)
+        {
+           MyFile.Signaldescription(@"D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\bin\Debug\信号描述.txt", MyFileIndex.strIndex,MyFileIndex.strDescribe);
+>>>>>>> master
             for (int i = 0; i < MyFileIndex.strIndex.Count; i++)
             {
                 for (int j = 0; j < dgv_signalShow.Rows.Count; j++)
                 {
+<<<<<<< HEAD
                     if (dgv_signalShow.Rows[j].Cells[0].Value!=null && dgv_signalShow.Rows[j].Cells[1].Value!=null)
                     {
                         if (dgv_signalShow.Rows[j].Cells[0].Value.Equals(MyFileIndex.strIndex[i]) && dgv_signalShow.Rows[j].Cells[1].Value.Equals(MyFileIndex.strDescribe[i]))
@@ -1264,10 +1277,17 @@ namespace DeskTestDome
                         goto end;
                     }
                     
+=======
+                    if (dgv_signalShow.Rows[j].Cells[0].Value.Equals(MyFileIndex.strIndex[i]))
+                    {
+                        goto end;
+                    }
+>>>>>>> master
                 }
                 dgv_signalShow.Rows.Add(MyFileIndex.strIndex[i], MyFileIndex.strDescribe[i]);
                 { Tag = MyFileIndex; };
             end:
+<<<<<<< HEAD
             string s = null;
             }
             dgv_signalShow.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -1279,6 +1299,12 @@ namespace DeskTestDome
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+=======
+                string s = null;
+            }
+        }
+
+>>>>>>> master
         private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //if (dgv_signalShow.SelectedRows.Count == 0)
@@ -1293,6 +1319,10 @@ namespace DeskTestDome
             //        dgv_signalShow.Rows.RemoveAt(dgv_signalShow.SelectedRows[i - 1].Index);
             //    }
             //}
+<<<<<<< HEAD
+=======
+            StringBuilder Strb = new StringBuilder();
+>>>>>>> master
             for (int i = 0; i < MyFileIndex.strIndex.Count; i++)
             {
                 if (MyFileIndex.strIndex[i].Equals(dgv_signalShow.SelectedRows[0].Cells[0].Value.ToString()))
@@ -1300,6 +1330,7 @@ namespace DeskTestDome
                     MyFileIndex.strIndex.RemoveAt(i);
                     MyFileIndex.strDescribe.RemoveAt(i);
                 }
+<<<<<<< HEAD
             }
             FileHelp.SingalContentAdd(StrPath, FileHelp.FileIndex_OnListChange(MyFileIndex.StrB, MyFileIndex.strIndex, MyFileIndex.strDescribe));
             dgv_signalShow.Rows.RemoveAt(dgv_signalShow.SelectedRows[0].Index);
@@ -1309,21 +1340,41 @@ namespace DeskTestDome
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+=======
+                else
+                {
+                    Strb.AppendLine(MyFileIndex.strIndex[i] + "：" + MyFileIndex.strDescribe[i]);
+                }
+            }
+            MyFile.SingalContentAdd(@"D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\bin\Debug\信号描述.txt", Strb.ToString());
+            
+            dgv_signalShow.Rows.RemoveAt(dgv_signalShow.SelectedRows[0].Index);
+        }
+
+>>>>>>> master
         private void dgv_signalShow_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
+<<<<<<< HEAD
                 if (dgv_signalShow.SelectedRows.Count>0||dgv_signalShow.SelectedCells.Count>0)
+=======
+                if (dgv_signalShow.SelectedRows.Count>0)
+>>>>>>> master
                 {
                     dgv_signalShow.ClearSelection();
                     dgv_signalShow.Rows[e.RowIndex].Selected = true;
                     dgv_signalShow.CurrentCell = dgv_signalShow.Rows[e.RowIndex].Cells[e.ColumnIndex];
+<<<<<<< HEAD
                     删除ToolStripMenuItem.Visible = true;
+=======
+>>>>>>> master
                     cms_signalAction.Show(MousePosition.X, MousePosition.Y);
                 }
             }
 
         }
+<<<<<<< HEAD
         /// <summary>
         /// 表格右键添加功能
         /// </summary>
@@ -1411,6 +1462,18 @@ namespace DeskTestDome
                     cms_signalAction.Show(MousePosition.X, MousePosition.Y);
                 }
             }
+=======
+
+        private void 添加ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dgv_signalShow.AllowUserToAddRows = true;
+            dgv_signalShow.ReadOnly = false;
+            for (int i = 0; i < dgv_signalShow.Rows.Count-1; i++)
+            {
+                dgv_signalShow.Rows[i].ReadOnly = true;
+            }
+            dgv_btnA.Visible = true;
+>>>>>>> master
         }
     }
 }
