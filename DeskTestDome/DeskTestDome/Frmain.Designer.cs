@@ -39,23 +39,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-<<<<<<< HEAD
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-=======
->>>>>>> master
             this.cbx_scranRobot = new System.Windows.Forms.ComboBox();
             this.btn_connect = new System.Windows.Forms.Button();
             this.btn_Enter = new System.Windows.Forms.Button();
             this.btn_ForceControl = new System.Windows.Forms.Button();
             this.dgv_ShowData = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -94,11 +83,8 @@
             this.btn_cy3 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.dgv_signalShow = new System.Windows.Forms.DataGridView();
-<<<<<<< HEAD
             this.dgv_ColumnIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgv_columnDescride = new System.Windows.Forms.DataGridViewTextBoxColumn();
-=======
->>>>>>> master
             this.cbx_MoveType = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -126,7 +112,6 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btn_dgvSignalAdd = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-<<<<<<< HEAD
             this.cms_signalAction = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.添加ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -138,16 +123,6 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-=======
-            this.textBoxR = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.cms_signalAction = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.添加ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dgv_ColumnIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgv_columnDescride = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgv_btnA = new System.Windows.Forms.DataGridViewButtonColumn();
->>>>>>> master
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ShowData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_signalShow)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -242,72 +217,6 @@
             this.dgv_ShowData.TabIndex = 6;
             this.dgv_ShowData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ShowData_CellContentClick);
             this.dgv_ShowData.SelectionChanged += new System.EventHandler(this.dgv_ShowData_SelectionChanged);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "点序号";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 60;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "等待号";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 60;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "运动类型";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 80;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column2.HeaderText = "速度(mm/s)";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 125;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "转弯半径";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 80;
-            // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column4.HeaderText = "气缸活动";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 125;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "力值设定";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 80;
-            // 
-            // Column6
-            // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column6.HeaderText = "点位允许";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
             // 
             // label1
             // 
@@ -711,12 +620,7 @@
             this.dgv_signalShow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_signalShow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgv_ColumnIndex,
-<<<<<<< HEAD
             this.dgv_columnDescride});
-=======
-            this.dgv_columnDescride,
-            this.dgv_btnA});
->>>>>>> master
             this.dgv_signalShow.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.dgv_signalShow.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgv_signalShow.Location = new System.Drawing.Point(397, 91);
@@ -729,7 +633,6 @@
             this.dgv_signalShow.Size = new System.Drawing.Size(302, 175);
             this.dgv_signalShow.TabIndex = 44;
             this.dgv_signalShow.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_signalShow_CellMouseUp);
-<<<<<<< HEAD
             this.dgv_signalShow.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgv_signalShow_EditingControlShowing);
             this.dgv_signalShow.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgv_signalShow_KeyPress);
             this.dgv_signalShow.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dgv_signalShow_MouseUp);
@@ -753,8 +656,6 @@
             this.dgv_columnDescride.MinimumWidth = 6;
             this.dgv_columnDescride.Name = "dgv_columnDescride";
             this.dgv_columnDescride.ReadOnly = true;
-=======
->>>>>>> master
             // 
             // cbx_MoveType
             // 
@@ -938,7 +839,6 @@
             this.dgv_log.AllowUserToDeleteRows = false;
             this.dgv_log.AllowUserToResizeColumns = false;
             this.dgv_log.AllowUserToResizeRows = false;
-<<<<<<< HEAD
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightCyan;
             this.dgv_log.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgv_log.BackgroundColor = System.Drawing.Color.White;
@@ -950,19 +850,6 @@
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.dgv_log.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-=======
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightCyan;
-            this.dgv_log.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgv_log.BackgroundColor = System.Drawing.Color.White;
-            this.dgv_log.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(223)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.dgv_log.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
->>>>>>> master
             this.dgv_log.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_log.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn3,
@@ -990,13 +877,8 @@
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-<<<<<<< HEAD
             dataGridViewCellStyle8.Font = new System.Drawing.Font("宋体", 6.6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle8;
-=======
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("宋体", 6.6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle7;
->>>>>>> master
             this.dataGridViewTextBoxColumn4.HeaderText = "标题";
             this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
@@ -1006,13 +888,8 @@
             // Column9
             // 
             this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-<<<<<<< HEAD
             dataGridViewCellStyle9.Font = new System.Drawing.Font("宋体", 6.6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Column9.DefaultCellStyle = dataGridViewCellStyle9;
-=======
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("宋体", 6.6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle8;
->>>>>>> master
             this.Column9.HeaderText = "时间";
             this.Column9.MinimumWidth = 6;
             this.Column9.Name = "Column9";
@@ -1042,7 +919,6 @@
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.AllowUserToResizeColumns = false;
             this.dataGridView2.AllowUserToResizeRows = false;
-<<<<<<< HEAD
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.LightCyan;
             this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
@@ -1054,19 +930,6 @@
             dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
-=======
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(223)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
->>>>>>> master
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn5,
@@ -1162,27 +1025,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "力值显示";
             // 
-<<<<<<< HEAD
-=======
-            // textBoxR
-            // 
-            this.textBoxR.Location = new System.Drawing.Point(1194, 72);
-            this.textBoxR.Multiline = true;
-            this.textBoxR.Name = "textBoxR";
-            this.textBoxR.Size = new System.Drawing.Size(345, 391);
-            this.textBoxR.TabIndex = 64;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1464, 479);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 65;
-            this.button1.Text = "读取";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
->>>>>>> master
             // cms_signalAction
             // 
             this.cms_signalAction.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -1207,7 +1049,6 @@
             this.添加ToolStripMenuItem.Text = "添加";
             this.添加ToolStripMenuItem.Click += new System.EventHandler(this.添加ToolStripMenuItem_Click);
             // 
-<<<<<<< HEAD
             // Column1
             // 
             this.Column1.HeaderText = "点序号";
@@ -1269,48 +1110,12 @@
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
-=======
-            // dgv_ColumnIndex
-            // 
-            this.dgv_ColumnIndex.HeaderText = "序号";
-            this.dgv_ColumnIndex.MinimumWidth = 6;
-            this.dgv_ColumnIndex.Name = "dgv_ColumnIndex";
-            this.dgv_ColumnIndex.ReadOnly = true;
-            this.dgv_ColumnIndex.Width = 60;
-            // 
-            // dgv_columnDescride
-            // 
-            this.dgv_columnDescride.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dgv_columnDescride.HeaderText = "信号描述";
-            this.dgv_columnDescride.MinimumWidth = 6;
-            this.dgv_columnDescride.Name = "dgv_columnDescride";
-            this.dgv_columnDescride.ReadOnly = true;
-            // 
-            // dgv_btnA
-            // 
-            this.dgv_btnA.HeaderText = "动作";
-            this.dgv_btnA.MinimumWidth = 6;
-            this.dgv_btnA.Name = "dgv_btnA";
-            this.dgv_btnA.ReadOnly = true;
-            this.dgv_btnA.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_btnA.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dgv_btnA.Text = "确定";
-            this.dgv_btnA.UseColumnTextForButtonValue = true;
-            this.dgv_btnA.Visible = false;
-            this.dgv_btnA.Width = 125;
->>>>>>> master
             // 
             // Frmain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(1171, 742);
-=======
-            this.ClientSize = new System.Drawing.Size(1569, 742);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBoxR);
->>>>>>> master
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dgv_log);
@@ -1432,20 +1237,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-<<<<<<< HEAD
-=======
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.TextBox textBoxR;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ContextMenuStrip cms_signalAction;
-        private System.Windows.Forms.ToolStripMenuItem 删除ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 添加ToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgv_ColumnIndex;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgv_columnDescride;
-        private System.Windows.Forms.DataGridViewButtonColumn dgv_btnA;
->>>>>>> master
     }
 }
 
