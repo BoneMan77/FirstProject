@@ -77,6 +77,11 @@ namespace DeskTestDome
 
         public delegate void DelegateUpdateView();
 
+        RobTarget Rt ;
+        JointTarget Jt;
+
+        
+
         EventLogMessage mgs;
         public Frmain()
         {
@@ -101,8 +106,15 @@ namespace DeskTestDome
             {
                 cbx_scranRobot.Items.Add(info.Name);
             }
-
-            cbx_scranRobot.SelectedIndex = 0;
+            if (cbx_scranRobot.Items.Count==0)
+            {
+                btn_connect.Text = "搜索";
+                MessageBox.Show("没有对应项目");
+            }
+            else
+            {
+                cbx_scranRobot.SelectedIndex = 0;
+            }
             cbx_Zone.SelectedIndex = 0;
             cbx_MoveType.SelectedIndex = 0;
             OnPindexValueChange += Form1_OnPindexValueChange;
@@ -145,7 +157,6 @@ namespace DeskTestDome
         //控件启用
         private void ControlEnabled()
         {
-
             btn_ChangeIndex.Enabled = true;
             btn_Enter.Enabled = true;
             btn_ForceControl.Enabled = true;
@@ -181,39 +192,68 @@ namespace DeskTestDome
         /// <param name="e"></param>
         private void btn_connect_Click(object sender, EventArgs e)
         {
-            foreach (ControllerInfo item in RobotClass.ns.Controllers)
+            if (btn_connect.Text == "搜索")
             {
-                if (cbx_scranRobot.Text.Equals(item.Name))
+                btn_connect.Text = "搜索中..";
+                foreach (ControllerInfo info in MyRobot.ScanList())
                 {
-                    if (item.Availability == Availability.Available)
+                    cbx_scranRobot.Items.Add(info.Name);
+                }
+                if (cbx_scranRobot.Items.Count == 0)
+                {
+                    btn_connect.Text = "搜索";
+                    MessageBox.Show("没有对应项目");
+                }
+                else
+                {
+                    btn_connect.Text = "连接";
+                    cbx_scranRobot.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+
+                foreach (ControllerInfo item in RobotClass.ns.Controllers)
+                {
+                    if (cbx_scranRobot.Text.Equals(item.Name))
                     {
-                        if (RobotClass.con != null)
+                        if (item.Availability == Availability.Available)
                         {
-                           MyRobot.controllerDis();
+                            if (RobotClass.con != null)
+                            {
+                                MyRobot.controllerDis();
+                            }
+                            RobotClass.con = ControllerFactory.CreateFrom(item);
+                            MessageBox.Show("连接上" + item.Name);
+                            lbe_connectStaus.Text = "已连接！";
+                            lbe_serial.Text = item.ControllerName.ToString();
+                            MyRobot = new RobotClass();
+                            ControlEnabled();
+                            JudgePress();
+                            EventChanged();
+                            AddItem();
                         }
-                        RobotClass.con = ControllerFactory.CreateFrom(item);
-                        MessageBox.Show("连接上" + item.Name);
-                        lbe_connectStaus.Text = "已连接！";
-                        lbe_serial.Text = item.ControllerName.ToString();
-                        MyRobot = new RobotClass();
-                        ControlEnabled();
-                        JudgePress();
-                        EventChanged();
-                        AddItem();
                     }
                 }
             }
+
+            
         }
 
         public void EventChanged()
         {
-
             RobotClass.con.Rapid.ExecutionStatusChanged += Rapid_ExecutionStatusChanged;
             RobotClass.con.StateChanged += Con_StateChanged; ;
             RobotClass.con.OperatingModeChanged += Con_OperatingModeChanged;
             MyData.rd_TestNum.ValueChanged += Rd_TestNum_ValueChanged;
             MyData.rd_Dataindex.ValueChanged += Rd_Dataindex_ValueChanged;
             MyData.rd_EventLog.MessageWritten += Rd_EventLog_MessageWritten;
+        }
+        //通过检测电机的启动停止来后台刷新机器人的坐标值位置
+        private void MyData_ChangeEvent(RobTarget Rt)
+        {
+            lbe_Rx.Text = Rt.Trans.X.ToString("0.00");
+            lbe_Ry.Text = Rt.Trans.Y.ToString("0.00");
         }
 
         private void Rd_EventLog_MessageWritten(object sender, ABB.Robotics.Controllers.EventLogDomain.MessageWrittenEventArgs e)
@@ -274,6 +314,14 @@ namespace DeskTestDome
             try
             {
                 lbe_MotionStatus.Text = RobotClass.con.State.ToString();
+                if (RobotClass.con.State == ControllerState.MotorsOn)
+                {
+                    T_RobotData.Start();
+                }
+                else
+                {
+                    T_RobotData.Stop();
+                }
             }
             catch (Exception)
             {
@@ -284,6 +332,45 @@ namespace DeskTestDome
             }
             
         }
+        private void T_RobotData_Tick(object sender, EventArgs e)
+        {
+            //MyData.rd__RobTarget = RobotClass.con.MotionSystem.ActiveMechanicalUnit.GetPosition(ABB.Robotics.Controllers.MotionDomain.CoordinateSystemType.Base);
+            if(Rt.ToString() != MyData.rd__RobTarget.ToString())
+            {
+                System.Threading.Tasks.Task task2 = System.Threading.Tasks.Task.Run(() =>
+                {
+                    Rt = MyData.rd__RobTarget;
+                    Jt = MyData.rd_RobotJoint;
+                    this.BeginInvoke(new MethodInvoker(() =>
+                    {
+                        lbe_Rx.Text = Rt.Trans.X.ToString("0.00");
+                        lbe_Ry.Text = Rt.Trans.Y.ToString("0.00");
+                        lbe_Rz.Text = Rt.Trans.Z.ToString("0.00");
+                        lbe_Rq1.Text = Rt.Rot.Q1.ToString("0.000");
+                        lbe_Rq2.Text = Rt.Rot.Q2.ToString("0.000");
+                        lbe_Rq3.Text = Rt.Rot.Q3.ToString("0.000");
+                        lbe_Rq4.Text = Rt.Rot.Q4.ToString("0.000");
+                        lbe_R1.Text = Jt.RobAx.Rax_1.ToString("0.00");
+                        lbe_R2.Text = Jt.RobAx.Rax_2.ToString("0.00");
+                        lbe_R3.Text = Jt.RobAx.Rax_3.ToString("0.00");
+                        lbe_R4.Text = Jt.RobAx.Rax_4.ToString("0.00");
+                        lbe_R5.Text = Jt.RobAx.Rax_5.ToString("0.00");
+                        lbe_R6.Text = Jt.RobAx.Rax_6.ToString("0.00");
+                    }));
+                });
+                Thread.Sleep(10);
+
+            }
+            //if (Jt.ToString()!=MyData.rd_RobotJoint.ToString())
+            //{
+            //    this.BeginInvoke(new MethodInvoker(() =>
+            //    {
+                    
+            //    }));
+            //}
+        }
+
+
 
 
         /// <summary>
@@ -513,7 +600,10 @@ namespace DeskTestDome
                         MyData.rd_Zone,
                         MyData.rd_SetForce,
                         MyData.rd_MoveType,
-                        MyData.rd_MovePermis
+                        MyData.rd_MovePermis,
+                        MyData.rd_JudgeWaitSign
+                        
+                        
                     };
 
                     List<string> RValueList = new List<string>()
@@ -522,7 +612,8 @@ namespace DeskTestDome
                         cbx_Zone.SelectedItem.ToString(),
                         tbx_Force.Text,
                         cbx_MoveType.SelectedItem.ToString(),
-                        cbx_PointAllow.Checked.ToString()
+                        cbx_PointAllow.Checked.ToString(),
+                        tbx_waitSign.Text
                     };
                     MyServise.WriteData(RDataList, RValueList, Pindex - 1);
                 }
@@ -1410,6 +1501,8 @@ namespace DeskTestDome
                 }
             }
         }
+
+        
     }
 }
 

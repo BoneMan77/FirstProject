@@ -2,14 +2,17 @@
 using ABB.Robotics.Controllers.RapidDomain;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DeskTestDome
 {
-    class RobotData
+    class RobotData 
     {
+
         private RapidData Rd_Dataindex;//点位信号
 
         private RapidData Rd_TestNum;//测试次数
@@ -44,6 +47,39 @@ namespace DeskTestDome
 
         private EventLog Rd_EventLog;//机器人报警数据
 
+        private RobTarget Rd_RobTarget;//机器人线性坐标
+
+        private JointTarget Rd_RobotJoint;//机器人轴数据
+
+        /// <summary>
+        /// 机器人点位信息
+        /// </summary>
+        public RobTarget rd__RobTarget
+        {
+            get
+            {
+                Rd_RobTarget = RobotClass.con.MotionSystem.ActiveMechanicalUnit.GetPosition(ABB.Robotics.Controllers.MotionDomain.CoordinateSystemType.Base);
+                return Rd_RobTarget;
+            }
+            set
+            {
+
+                Rd_RobTarget = value;
+            }
+        }
+
+        public JointTarget rd_RobotJoint
+        {
+            get
+            {
+                Rd_RobotJoint = RobotClass.con.MotionSystem.ActiveMechanicalUnit.GetPosition();
+                return Rd_RobotJoint;
+            }
+            set
+            {
+                Rd_RobotJoint = value;
+            }
+        }
         /// <summary>
         /// 机器人报警数据
         /// </summary>
@@ -299,5 +335,7 @@ namespace DeskTestDome
                 Rd_SelectActionReset = value;
             }
         }
+
+        
     }
 }

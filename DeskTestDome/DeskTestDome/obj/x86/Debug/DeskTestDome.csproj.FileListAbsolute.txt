@@ -1,0 +1,7 @@
+D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\obj\x86\Debug\DeskTestDome.csprojAssemblyReference.cache
+D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\obj\x86\Debug\DeskTestDome.CylinderSet.resources
+D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\obj\x86\Debug\DeskTestDome.Frmain.resources
+D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\obj\x86\Debug\DeskTestDome.JudgeForm.resources
+D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\obj\x86\Debug\DeskTestDome.Properties.Resources.resources
+D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\obj\x86\Debug\DeskTestDome.csproj.GenerateResource.cache
+D:\GithubClone\FirstProject\DeskTestDome\DeskTestDome\obj\x86\Debug\DeskTestDome.csproj.CoreCompileInputs.cache

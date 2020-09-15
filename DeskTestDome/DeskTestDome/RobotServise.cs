@@ -161,15 +161,6 @@ namespace DeskTestDome
             return TransformData(RData).Rank;
         }
 
-        public void LogSub()
-        {
-            RobotData RD = new RobotData();
-            RD.rd_EventLog.MessageWritten += Rd_EventLog_MessageWritten;
-        }
-
-        private void Rd_EventLog_MessageWritten(object sender, EventArgs e)
-        {
-           
-        }
+        
     }
 }

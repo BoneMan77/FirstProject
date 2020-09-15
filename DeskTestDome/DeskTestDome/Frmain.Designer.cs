@@ -45,6 +45,14 @@
             this.btn_Enter = new System.Windows.Forms.Button();
             this.btn_ForceControl = new System.Windows.Forms.Button();
             this.dgv_ShowData = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgv_CloumnSpeed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgv_cloumnAction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -104,7 +112,7 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbx_waitSign = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -115,14 +123,46 @@
             this.cms_signalAction = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.添加ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.lbe_RTy = new System.Windows.Forms.Label();
+            this.lbe_RTz = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.lbe_RFy = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.lbe_RTx = new System.Windows.Forms.Label();
+            this.lbe_RFz = new System.Windows.Forms.Label();
+            this.lbe_RFx = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.lbe_R5 = new System.Windows.Forms.Label();
+            this.lbe_R6 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.lbe_R2 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.lbe_R4 = new System.Windows.Forms.Label();
+            this.lbe_R3 = new System.Windows.Forms.Label();
+            this.lbe_R1 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.lbe_Rq2 = new System.Windows.Forms.Label();
+            this.lbe_Rq4 = new System.Windows.Forms.Label();
+            this.lbe_Rq3 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.lbe_Ry = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lbe_Rq1 = new System.Windows.Forms.Label();
+            this.lbe_Rz = new System.Windows.Forms.Label();
+            this.lbe_Rx = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.T_RobotData = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ShowData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_signalShow)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -134,6 +174,7 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.cms_signalAction.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbx_scranRobot
@@ -200,9 +241,9 @@
             this.Column1,
             this.Column8,
             this.Column7,
-            this.Column2,
+            this.dgv_CloumnSpeed,
             this.Column3,
-            this.Column4,
+            this.dgv_cloumnAction,
             this.Column5,
             this.Column6});
             this.dgv_ShowData.Cursor = System.Windows.Forms.Cursors.Arrow;
@@ -217,6 +258,72 @@
             this.dgv_ShowData.TabIndex = 6;
             this.dgv_ShowData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ShowData_CellContentClick);
             this.dgv_ShowData.SelectionChanged += new System.EventHandler(this.dgv_ShowData_SelectionChanged);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "点序号";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 60;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "等待号";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 60;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "运动类型";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Width = 80;
+            // 
+            // dgv_CloumnSpeed
+            // 
+            this.dgv_CloumnSpeed.FillWeight = 10F;
+            this.dgv_CloumnSpeed.HeaderText = "速度(mm/s)";
+            this.dgv_CloumnSpeed.MinimumWidth = 6;
+            this.dgv_CloumnSpeed.Name = "dgv_CloumnSpeed";
+            this.dgv_CloumnSpeed.ReadOnly = true;
+            this.dgv_CloumnSpeed.Width = 125;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "转弯半径";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 80;
+            // 
+            // dgv_cloumnAction
+            // 
+            this.dgv_cloumnAction.FillWeight = 10F;
+            this.dgv_cloumnAction.HeaderText = "气缸活动";
+            this.dgv_cloumnAction.MinimumWidth = 6;
+            this.dgv_cloumnAction.Name = "dgv_cloumnAction";
+            this.dgv_cloumnAction.ReadOnly = true;
+            this.dgv_cloumnAction.Width = 125;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "力值设定";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 80;
+            // 
+            // Column6
+            // 
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column6.HeaderText = "点位允许";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
             // 
             // label1
             // 
@@ -295,27 +402,27 @@
             this.lbe_serial.AutoSize = true;
             this.lbe_serial.Location = new System.Drawing.Point(145, 21);
             this.lbe_serial.Name = "lbe_serial";
-            this.lbe_serial.Size = new System.Drawing.Size(55, 15);
+            this.lbe_serial.Size = new System.Drawing.Size(37, 15);
             this.lbe_serial.TabIndex = 16;
-            this.lbe_serial.Text = "label5";
+            this.lbe_serial.Text = "未知";
             // 
             // lbe_Status
             // 
             this.lbe_Status.AutoSize = true;
             this.lbe_Status.Location = new System.Drawing.Point(145, 81);
             this.lbe_Status.Name = "lbe_Status";
-            this.lbe_Status.Size = new System.Drawing.Size(55, 15);
+            this.lbe_Status.Size = new System.Drawing.Size(37, 15);
             this.lbe_Status.TabIndex = 17;
-            this.lbe_Status.Text = "label8";
+            this.lbe_Status.Text = "未知";
             // 
             // lbe_MotionStatus
             // 
             this.lbe_MotionStatus.AutoSize = true;
             this.lbe_MotionStatus.Location = new System.Drawing.Point(145, 111);
             this.lbe_MotionStatus.Name = "lbe_MotionStatus";
-            this.lbe_MotionStatus.Size = new System.Drawing.Size(55, 15);
+            this.lbe_MotionStatus.Size = new System.Drawing.Size(37, 15);
             this.lbe_MotionStatus.TabIndex = 18;
-            this.lbe_MotionStatus.Text = "label9";
+            this.lbe_MotionStatus.Text = "未知";
             // 
             // tbx_index
             // 
@@ -506,9 +613,9 @@
             this.lbe_runStatus.AutoSize = true;
             this.lbe_runStatus.Location = new System.Drawing.Point(145, 51);
             this.lbe_runStatus.Name = "lbe_runStatus";
-            this.lbe_runStatus.Size = new System.Drawing.Size(55, 15);
+            this.lbe_runStatus.Size = new System.Drawing.Size(37, 15);
             this.lbe_runStatus.TabIndex = 35;
-            this.lbe_runStatus.Text = "label9";
+            this.lbe_runStatus.Text = "未知";
             // 
             // label10
             // 
@@ -831,7 +938,7 @@
             this.groupBox4.Size = new System.Drawing.Size(392, 137);
             this.groupBox4.TabIndex = 58;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "机器人信息";
+            this.groupBox4.Text = "机器人状态信息";
             // 
             // dgv_log
             // 
@@ -856,14 +963,14 @@
             this.dataGridViewTextBoxColumn4,
             this.Column9});
             this.dgv_log.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.dgv_log.Location = new System.Drawing.Point(762, 469);
+            this.dgv_log.Location = new System.Drawing.Point(762, 526);
             this.dgv_log.Name = "dgv_log";
             this.dgv_log.ReadOnly = true;
             this.dgv_log.RowHeadersVisible = false;
             this.dgv_log.RowHeadersWidth = 51;
             this.dgv_log.RowTemplate.Height = 27;
             this.dgv_log.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_log.Size = new System.Drawing.Size(392, 250);
+            this.dgv_log.Size = new System.Drawing.Size(392, 193);
             this.dgv_log.TabIndex = 59;
             // 
             // dataGridViewTextBoxColumn3
@@ -904,14 +1011,14 @@
             this.label16.TabIndex = 61;
             this.label16.Text = "等待信号";
             // 
-            // textBox1
+            // tbx_waitSign
             // 
-            this.textBox1.Location = new System.Drawing.Point(397, 41);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(66, 25);
-            this.textBox1.TabIndex = 60;
-            this.textBox1.Text = "0";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbx_waitSign.Location = new System.Drawing.Point(397, 41);
+            this.tbx_waitSign.Name = "tbx_waitSign";
+            this.tbx_waitSign.Size = new System.Drawing.Size(66, 25);
+            this.tbx_waitSign.TabIndex = 60;
+            this.tbx_waitSign.Text = "0";
+            this.tbx_waitSign.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // dataGridView2
             // 
@@ -935,7 +1042,7 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6});
             this.dataGridView2.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.dataGridView2.Location = new System.Drawing.Point(762, 288);
+            this.dataGridView2.Location = new System.Drawing.Point(1177, 85);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersVisible = false;
@@ -979,7 +1086,7 @@
             this.tabPage1.Controls.Add(this.btn_Enter);
             this.tabPage1.Controls.Add(this.label16);
             this.tabPage1.Controls.Add(this.btn_ForceControl);
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.tbx_waitSign);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.cbx_Zone);
@@ -1049,73 +1156,405 @@
             this.添加ToolStripMenuItem.Text = "添加";
             this.添加ToolStripMenuItem.Click += new System.EventHandler(this.添加ToolStripMenuItem_Click);
             // 
-            // Column1
+            // groupBox5
             // 
-            this.Column1.HeaderText = "点序号";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 60;
+            this.groupBox5.Controls.Add(this.lbe_RTy);
+            this.groupBox5.Controls.Add(this.lbe_RTz);
+            this.groupBox5.Controls.Add(this.label48);
+            this.groupBox5.Controls.Add(this.label49);
+            this.groupBox5.Controls.Add(this.lbe_RFy);
+            this.groupBox5.Controls.Add(this.label52);
+            this.groupBox5.Controls.Add(this.lbe_RTx);
+            this.groupBox5.Controls.Add(this.lbe_RFz);
+            this.groupBox5.Controls.Add(this.lbe_RFx);
+            this.groupBox5.Controls.Add(this.label56);
+            this.groupBox5.Controls.Add(this.label57);
+            this.groupBox5.Controls.Add(this.label58);
+            this.groupBox5.Controls.Add(this.lbe_R5);
+            this.groupBox5.Controls.Add(this.lbe_R6);
+            this.groupBox5.Controls.Add(this.label34);
+            this.groupBox5.Controls.Add(this.label35);
+            this.groupBox5.Controls.Add(this.lbe_R2);
+            this.groupBox5.Controls.Add(this.label38);
+            this.groupBox5.Controls.Add(this.lbe_R4);
+            this.groupBox5.Controls.Add(this.lbe_R3);
+            this.groupBox5.Controls.Add(this.lbe_R1);
+            this.groupBox5.Controls.Add(this.label42);
+            this.groupBox5.Controls.Add(this.label43);
+            this.groupBox5.Controls.Add(this.label44);
+            this.groupBox5.Controls.Add(this.lbe_Rq2);
+            this.groupBox5.Controls.Add(this.lbe_Rq4);
+            this.groupBox5.Controls.Add(this.lbe_Rq3);
+            this.groupBox5.Controls.Add(this.label27);
+            this.groupBox5.Controls.Add(this.label26);
+            this.groupBox5.Controls.Add(this.label25);
+            this.groupBox5.Controls.Add(this.lbe_Ry);
+            this.groupBox5.Controls.Add(this.label18);
+            this.groupBox5.Controls.Add(this.lbe_Rq1);
+            this.groupBox5.Controls.Add(this.lbe_Rz);
+            this.groupBox5.Controls.Add(this.lbe_Rx);
+            this.groupBox5.Controls.Add(this.label22);
+            this.groupBox5.Controls.Add(this.label23);
+            this.groupBox5.Controls.Add(this.label24);
+            this.groupBox5.Location = new System.Drawing.Point(762, 288);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(392, 232);
+            this.groupBox5.TabIndex = 64;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "机器人参数信息";
             // 
-            // Column8
+            // lbe_RTy
             // 
-            this.Column8.HeaderText = "等待号";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 60;
+            this.lbe_RTy.AutoSize = true;
+            this.lbe_RTy.Location = new System.Drawing.Point(317, 147);
+            this.lbe_RTy.Name = "lbe_RTy";
+            this.lbe_RTy.Size = new System.Drawing.Size(37, 15);
+            this.lbe_RTy.TabIndex = 77;
+            this.lbe_RTy.Text = "未知";
             // 
-            // Column7
+            // lbe_RTz
             // 
-            this.Column7.HeaderText = "运动类型";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 80;
+            this.lbe_RTz.AutoSize = true;
+            this.lbe_RTz.Location = new System.Drawing.Point(317, 174);
+            this.lbe_RTz.Name = "lbe_RTz";
+            this.lbe_RTz.Size = new System.Drawing.Size(37, 15);
+            this.lbe_RTz.TabIndex = 75;
+            this.lbe_RTz.Text = "未知";
             // 
-            // Column2
+            // label48
             // 
-            this.Column2.HeaderText = "速度(mm/s)";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(280, 145);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(31, 15);
+            this.label48.TabIndex = 74;
+            this.label48.Text = "Ty:";
             // 
-            // Column3
+            // label49
             // 
-            this.Column3.HeaderText = "转弯半径";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 80;
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(280, 173);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(31, 15);
+            this.label49.TabIndex = 73;
+            this.label49.Text = "Tz:";
             // 
-            // Column4
+            // lbe_RFy
             // 
-            this.Column4.HeaderText = "气缸活动";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
+            this.lbe_RFy.AutoSize = true;
+            this.lbe_RFy.Location = new System.Drawing.Point(317, 63);
+            this.lbe_RFy.Name = "lbe_RFy";
+            this.lbe_RFy.Size = new System.Drawing.Size(37, 15);
+            this.lbe_RFy.TabIndex = 71;
+            this.lbe_RFy.Text = "未知";
             // 
-            // Column5
+            // label52
             // 
-            this.Column5.HeaderText = "力值设定";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 80;
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(280, 61);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(31, 15);
+            this.label52.TabIndex = 70;
+            this.label52.Text = "Fy:";
             // 
-            // Column6
+            // lbe_RTx
             // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column6.HeaderText = "点位允许";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
+            this.lbe_RTx.AutoSize = true;
+            this.lbe_RTx.Location = new System.Drawing.Point(317, 118);
+            this.lbe_RTx.Name = "lbe_RTx";
+            this.lbe_RTx.Size = new System.Drawing.Size(37, 15);
+            this.lbe_RTx.TabIndex = 69;
+            this.lbe_RTx.Text = "未知";
+            // 
+            // lbe_RFz
+            // 
+            this.lbe_RFz.AutoSize = true;
+            this.lbe_RFz.Location = new System.Drawing.Point(317, 90);
+            this.lbe_RFz.Name = "lbe_RFz";
+            this.lbe_RFz.Size = new System.Drawing.Size(37, 15);
+            this.lbe_RFz.TabIndex = 68;
+            this.lbe_RFz.Text = "未知";
+            // 
+            // lbe_RFx
+            // 
+            this.lbe_RFx.AutoSize = true;
+            this.lbe_RFx.Location = new System.Drawing.Point(317, 34);
+            this.lbe_RFx.Name = "lbe_RFx";
+            this.lbe_RFx.Size = new System.Drawing.Size(37, 15);
+            this.lbe_RFx.TabIndex = 67;
+            this.lbe_RFx.Text = "未知";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(280, 33);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(31, 15);
+            this.label56.TabIndex = 66;
+            this.label56.Text = "Fx:";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(280, 117);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(31, 15);
+            this.label57.TabIndex = 65;
+            this.label57.Text = "Tx:";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(280, 89);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(31, 15);
+            this.label58.TabIndex = 64;
+            this.label58.Text = "Fz:";
+            // 
+            // lbe_R5
+            // 
+            this.lbe_R5.AutoSize = true;
+            this.lbe_R5.Location = new System.Drawing.Point(184, 148);
+            this.lbe_R5.Name = "lbe_R5";
+            this.lbe_R5.Size = new System.Drawing.Size(37, 15);
+            this.lbe_R5.TabIndex = 63;
+            this.lbe_R5.Text = "未知";
+            // 
+            // lbe_R6
+            // 
+            this.lbe_R6.AutoSize = true;
+            this.lbe_R6.Location = new System.Drawing.Point(184, 176);
+            this.lbe_R6.Name = "lbe_R6";
+            this.lbe_R6.Size = new System.Drawing.Size(37, 15);
+            this.lbe_R6.TabIndex = 61;
+            this.lbe_R6.Text = "未知";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(151, 146);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(23, 15);
+            this.label34.TabIndex = 60;
+            this.label34.Text = "5:";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(151, 174);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(23, 15);
+            this.label35.TabIndex = 59;
+            this.label35.Text = "6:";
+            // 
+            // lbe_R2
+            // 
+            this.lbe_R2.AutoSize = true;
+            this.lbe_R2.Location = new System.Drawing.Point(184, 64);
+            this.lbe_R2.Name = "lbe_R2";
+            this.lbe_R2.Size = new System.Drawing.Size(37, 15);
+            this.lbe_R2.TabIndex = 57;
+            this.lbe_R2.Text = "未知";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(151, 62);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(23, 15);
+            this.label38.TabIndex = 56;
+            this.label38.Text = "2:";
+            // 
+            // lbe_R4
+            // 
+            this.lbe_R4.AutoSize = true;
+            this.lbe_R4.Location = new System.Drawing.Point(184, 120);
+            this.lbe_R4.Name = "lbe_R4";
+            this.lbe_R4.Size = new System.Drawing.Size(37, 15);
+            this.lbe_R4.TabIndex = 55;
+            this.lbe_R4.Text = "未知";
+            // 
+            // lbe_R3
+            // 
+            this.lbe_R3.AutoSize = true;
+            this.lbe_R3.Location = new System.Drawing.Point(184, 92);
+            this.lbe_R3.Name = "lbe_R3";
+            this.lbe_R3.Size = new System.Drawing.Size(37, 15);
+            this.lbe_R3.TabIndex = 54;
+            this.lbe_R3.Text = "未知";
+            // 
+            // lbe_R1
+            // 
+            this.lbe_R1.AutoSize = true;
+            this.lbe_R1.Location = new System.Drawing.Point(184, 36);
+            this.lbe_R1.Name = "lbe_R1";
+            this.lbe_R1.Size = new System.Drawing.Size(37, 15);
+            this.lbe_R1.TabIndex = 53;
+            this.lbe_R1.Text = "未知";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(151, 34);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(23, 15);
+            this.label42.TabIndex = 52;
+            this.label42.Text = "1:";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(151, 118);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(23, 15);
+            this.label43.TabIndex = 51;
+            this.label43.Text = "4:";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(151, 90);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(23, 15);
+            this.label44.TabIndex = 50;
+            this.label44.Text = "3:";
+            // 
+            // lbe_Rq2
+            // 
+            this.lbe_Rq2.AutoSize = true;
+            this.lbe_Rq2.Location = new System.Drawing.Point(55, 144);
+            this.lbe_Rq2.Name = "lbe_Rq2";
+            this.lbe_Rq2.Size = new System.Drawing.Size(37, 15);
+            this.lbe_Rq2.TabIndex = 49;
+            this.lbe_Rq2.Text = "未知";
+            // 
+            // lbe_Rq4
+            // 
+            this.lbe_Rq4.AutoSize = true;
+            this.lbe_Rq4.Location = new System.Drawing.Point(55, 201);
+            this.lbe_Rq4.Name = "lbe_Rq4";
+            this.lbe_Rq4.Size = new System.Drawing.Size(37, 15);
+            this.lbe_Rq4.TabIndex = 48;
+            this.lbe_Rq4.Text = "未知";
+            // 
+            // lbe_Rq3
+            // 
+            this.lbe_Rq3.AutoSize = true;
+            this.lbe_Rq3.Location = new System.Drawing.Point(55, 172);
+            this.lbe_Rq3.Name = "lbe_Rq3";
+            this.lbe_Rq3.Size = new System.Drawing.Size(37, 15);
+            this.lbe_Rq3.TabIndex = 47;
+            this.lbe_Rq3.Text = "未知";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(18, 145);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(31, 15);
+            this.label27.TabIndex = 46;
+            this.label27.Text = "q2:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(18, 173);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(31, 15);
+            this.label26.TabIndex = 45;
+            this.label26.Text = "q3:";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(18, 201);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(31, 15);
+            this.label25.TabIndex = 44;
+            this.label25.Text = "q4:";
+            // 
+            // lbe_Ry
+            // 
+            this.lbe_Ry.AutoSize = true;
+            this.lbe_Ry.Location = new System.Drawing.Point(55, 62);
+            this.lbe_Ry.Name = "lbe_Ry";
+            this.lbe_Ry.Size = new System.Drawing.Size(37, 15);
+            this.lbe_Ry.TabIndex = 43;
+            this.lbe_Ry.Text = "未知";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(26, 61);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(23, 15);
+            this.label18.TabIndex = 42;
+            this.label18.Text = "y:";
+            // 
+            // lbe_Rq1
+            // 
+            this.lbe_Rq1.AutoSize = true;
+            this.lbe_Rq1.Location = new System.Drawing.Point(55, 117);
+            this.lbe_Rq1.Name = "lbe_Rq1";
+            this.lbe_Rq1.Size = new System.Drawing.Size(37, 15);
+            this.lbe_Rq1.TabIndex = 41;
+            this.lbe_Rq1.Text = "未知";
+            // 
+            // lbe_Rz
+            // 
+            this.lbe_Rz.AutoSize = true;
+            this.lbe_Rz.Location = new System.Drawing.Point(55, 90);
+            this.lbe_Rz.Name = "lbe_Rz";
+            this.lbe_Rz.Size = new System.Drawing.Size(37, 15);
+            this.lbe_Rz.TabIndex = 40;
+            this.lbe_Rz.Text = "未知";
+            // 
+            // lbe_Rx
+            // 
+            this.lbe_Rx.AutoSize = true;
+            this.lbe_Rx.Location = new System.Drawing.Point(55, 34);
+            this.lbe_Rx.Name = "lbe_Rx";
+            this.lbe_Rx.Size = new System.Drawing.Size(37, 15);
+            this.lbe_Rx.TabIndex = 39;
+            this.lbe_Rx.Text = "未知";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(26, 33);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(23, 15);
+            this.label22.TabIndex = 38;
+            this.label22.Text = "x:";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(18, 117);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(31, 15);
+            this.label23.TabIndex = 37;
+            this.label23.Text = "q1:";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(26, 89);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(23, 15);
+            this.label24.TabIndex = 36;
+            this.label24.Text = "z:";
+            // 
+            // T_RobotData
+            // 
+            this.T_RobotData.Tick += new System.EventHandler(this.T_RobotData_Tick);
             // 
             // Frmain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1171, 742);
+            this.ClientSize = new System.Drawing.Size(1581, 742);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dgv_log);
@@ -1147,6 +1586,8 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.cms_signalAction.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1213,7 +1654,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DataGridView dgv_log;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbx_waitSign;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
@@ -1232,11 +1673,51 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgv_CloumnSpeed;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgv_cloumnAction;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label lbe_RTy;
+        private System.Windows.Forms.Label lbe_RTz;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label lbe_RFy;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Label lbe_RTx;
+        private System.Windows.Forms.Label lbe_RFz;
+        private System.Windows.Forms.Label lbe_RFx;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Label lbe_R5;
+        private System.Windows.Forms.Label lbe_R6;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label lbe_R2;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label lbe_R4;
+        private System.Windows.Forms.Label lbe_R3;
+        private System.Windows.Forms.Label lbe_R1;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label lbe_Rq2;
+        private System.Windows.Forms.Label lbe_Rq4;
+        private System.Windows.Forms.Label lbe_Rq3;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label lbe_Ry;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lbe_Rq1;
+        private System.Windows.Forms.Label lbe_Rz;
+        private System.Windows.Forms.Label lbe_Rx;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Timer T_RobotData;
     }
 }
 
